@@ -207,7 +207,7 @@ class MainModel11_13 {
         for(Answer11_13 answer : listAnswer) {
             answer.draw();
         }
-
+        
         //magic
         if(magic && x_left + y_left == 0) {
             bward = segment / 2;
@@ -416,10 +416,13 @@ class MainModel11_13 {
             }
         }
     }
-
+    
     void reset() {
-        init();
-        listAnswer.clear();
+        if(counter == 0) {
+            init();
+            listAnswer.clear();
+        }
+        
     }
 }
 
@@ -441,7 +444,7 @@ class Question11_13 extends Question {
         super.mousePressed();
         model.mousePressed();
     }
-
+    
     void reset() {
         super.reset();
         model.reset();
