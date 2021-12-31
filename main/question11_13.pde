@@ -71,7 +71,7 @@ class Answer11_13 {
     int ordinal = 1;
     int segment = 33;
     int pos_x = 800;
-    int pos_y = 175;
+    int pos_y = 225;
     int distance = 30;
     
     Answer11_13(int _ordinal, String _sequence) {
@@ -131,13 +131,12 @@ class MainModel11_13 {
     // to edit
     int segment = 100;
     int x_start = 350;
-    int y_start = 200;
+    int y_start = 250;
     int delay = 20;
     int speed = 4;
     int period = 20;
     int count_period = 0;
     
-    //PImage character = loadImage("../data/img/ant.svg");
     PImage home = loadImage("../data/img/home.png");
     PImage ant = loadImage("../data/img/ant.png");
     PImage pond = loadImage("../data/img/pond.png");
@@ -164,10 +163,10 @@ class MainModel11_13 {
     
     int button_size = 20;
     String button_shape = "o|o";
-    ControlButton11_13 button_down = new ControlButton11_13(button_shape, 350, 600, button_size, "down");
-    ControlButton11_13 button_right = new ControlButton11_13(button_shape, 450, 600, button_size, "right");
-    ControlButton11_13 button_reset = new ControlButton11_13(button_shape, 550, 600, button_size, "reset");  
-    ControlButton11_13 button_backward = new ControlButton11_13(button_shape, 650, 600, button_size, "backward");
+    ControlButton11_13 button_down = new ControlButton11_13(button_shape, 350, 650, button_size, "down");
+    ControlButton11_13 button_right = new ControlButton11_13(button_shape, 450, 650, button_size, "right");
+    ControlButton11_13 button_reset = new ControlButton11_13(button_shape, 550, 650, button_size, "reset");  
+    ControlButton11_13 button_backward = new ControlButton11_13(button_shape, 650, 650, button_size, "backward");
     RectButton button_solution = new RectButton("đáp án", 1280, 100, 30);
     
     //set ant to start point
@@ -341,7 +340,7 @@ class MainModel11_13 {
         if(listAnswer.size() == solution.length) {
             fill(231, 76, 60);
             textSize(50.0);
-            text("CONGRATULATION!!!", 1000, 625);
+            text("CONGRATULATION!!!", 1000, 650);
             textSize(12.0);
         }
         
@@ -417,6 +416,11 @@ class MainModel11_13 {
             }
         }
     }
+
+    void reset() {
+        init();
+        listAnswer.clear();
+    }
 }
 
 class Question11_13 extends Question { 
@@ -424,7 +428,7 @@ class Question11_13 extends Question {
     
     void setup() {
         super.setup();  
-        String quizText = "Có bao nhiêu cách để một chú kiến có thể trở về nhà là điểm B từ điểm A? Hãy hình dung chú ta chỉ có thể đi được theo hai hướng phải và lên";
+        String quizText = "Tin vui cho đàn kiến ở điểm A là có rất nhiều thức ăn ở điểm B. Tin buồn là có một loài động vật ăn kiến ở điểm C. Hỏi có bao nhiêu cách để đàn kiến có thể đi đến điểm B an toàn mà không cần đi qua điểm C? Biết chúng có thể di chuyển theo hướng phải hoặc xuống.";
         quiz = new QuizText(quizText);
     }
     
@@ -436,5 +440,10 @@ class Question11_13 extends Question {
     void mousePressed() {
         super.mousePressed();
         model.mousePressed();
+    }
+
+    void reset() {
+        super.reset();
+        model.reset();
     }
 }
