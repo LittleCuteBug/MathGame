@@ -17,6 +17,12 @@ class Question11_2 extends Question {
       button.draw();
     }
   }
+
+  void reset() {
+    for (AnswerChoicesButton b: answer) {
+      b.is_answered = false;
+    }
+  }
   
   void mousePressed() {
     super.mousePressed();
