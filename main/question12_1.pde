@@ -100,4 +100,7 @@ class Question12_1 extends Question {
       answer[state] = answer[state] + key;
     }
   }
+  void reset() {
+    print("1123");
+  }
 }
