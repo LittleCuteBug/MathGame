@@ -320,11 +320,11 @@ class MainModel11_1 {
         textSize(50);
         text("B", x_end - 10, y_end - 10);
         textSize(12);
-
+        
         //draw ant
         int ant_size = 80;
         image(ant, x_cur - ant_size / 2, y_cur - ant_size / 2, ant_size, ant_size);
-
+        
         //congratulation
         if(listAnswer.size() == solution.length) {
             fill(231, 76, 60);
@@ -391,10 +391,12 @@ class MainModel11_1 {
             }
         }
     }
-
+    
     void reset() {
-        init();
-        listAnswer.clear();
+        if(counter == 0) {
+            init();
+            listAnswer.clear();
+        }
     }
 }
 
@@ -416,7 +418,7 @@ class Question11_1 extends Question {
         super.mousePressed();
         model.mousePressed();
     }
-
+    
     void reset() {
         super.reset();
         model.reset();
