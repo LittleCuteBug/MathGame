@@ -137,7 +137,7 @@ class MainModel11_1 {
     int x_start = 350;
     int y_start = 500;
     int delay = 20;
-    int speed = 4;
+    int speed = 1;
     int pediod = 20;
     int count_pediod = 0;
     
@@ -320,11 +320,11 @@ class MainModel11_1 {
         textSize(50);
         text("B", x_end - 10, y_end - 10);
         textSize(12);
-
+        
         //draw ant
         int ant_size = 80;
         image(ant, x_cur - ant_size / 2, y_cur - ant_size / 2, ant_size, ant_size);
-
+        
         //congratulation
         if(listAnswer.size() == 6) {
             fill(231, 76, 60);
@@ -391,6 +391,14 @@ class MainModel11_1 {
             }
         }
     }
+    
+    void reset() {
+        if(counter == 0) {
+            init();
+            listAnswer.clear();
+        }
+        
+    }
 }
 
 class Question11_1 extends Question { 
@@ -410,5 +418,10 @@ class Question11_1 extends Question {
     void mousePressed() {
         super.mousePressed();
         model.mousePressed();
+    }
+    
+    void reset() {
+        super.reset();
+        model.reset();
     }
 }
