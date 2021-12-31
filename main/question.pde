@@ -25,4 +25,7 @@ class Question {
     if(resetButton.clicked())
       reset();
   }
+  void keyPressed() {
+    print(key);
+  }
 }
