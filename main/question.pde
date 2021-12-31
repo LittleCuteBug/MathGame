@@ -1,6 +1,7 @@
 class Question {
   PImage bg;
-  RectButton menu = new RectButton("Menu", 50, 50);
+  RectButton menuButton = new RectButton("Menu", 50, 50);
+  RectButton resetButton = new RectButton("Reset", 50, 100);
   Paragraph quiz;
   
   void setup() {
@@ -9,12 +10,19 @@ class Question {
   
   void draw() {
     background(bg);
-    menu.draw();
+    menuButton.draw();
+    resetButton.draw();
     quiz.draw();
+  }
+
+  void reset() {
+
   }
   
   void mousePressed() {
-    if(menu.clicked())
+    if(menuButton.clicked())
       currentPage = "menu";
+    if(resetButton.clicked())
+      reset();
   }
 }
