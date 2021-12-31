@@ -1,17 +1,17 @@
-class ControlButton extends RectButton{
+class ControlButton11_1 extends RectButton{
     int labalSize = 5;
     
     String type;
     
-    ControlButton(String _text, float _x, float _y) {
+    ControlButton11_1(String _text, float _x, float _y) {
         super(_text, _x, _y, 15.0, 10.0, 10.0);
     }
     
-    ControlButton(String _text, float _x, float _y, float _text_size) {
+    ControlButton11_1(String _text, float _x, float _y, float _text_size) {
         super(_text, _x, _y, _text_size, _text_size * 0.8, _text_size * 0.8);
     }
     
-    ControlButton(String _text, float _x, float _y, float _text_size, String _type) {
+    ControlButton11_1(String _text, float _x, float _y, float _text_size, String _type) {
         super(_text, _x, _y, _text_size, _text_size * 0.8, _text_size * 0.8);
         type = _type;
     }
@@ -138,8 +138,8 @@ class MainModel11_1 {
     int y_start = 500;
     int delay = 20;
     int speed = 4;
-    int pediod = 20;
-    int count_pediod = 0;
+    int period = 20;
+    int count_period = 0;
     
     //PImage character = loadImage("../data/img/ant.svg");
     PImage home = loadImage("../data/img/home.png");
@@ -166,10 +166,10 @@ class MainModel11_1 {
     
     int button_size = 20;
     String button_shape = "o|o";
-    ControlButton button_up = new ControlButton(button_shape, 350, 600, button_size, "up");
-    ControlButton button_right = new ControlButton(button_shape, 450, 600, button_size, "right");
-    ControlButton button_reset = new ControlButton(button_shape, 550, 600, button_size, "reset");  
-    ControlButton button_backward = new ControlButton(button_shape, 650, 600, button_size, "backward");
+    ControlButton11_1 button_up = new ControlButton11_1(button_shape, 350, 600, button_size, "up");
+    ControlButton11_1 button_right = new ControlButton11_1(button_shape, 450, 600, button_size, "right");
+    ControlButton11_1 button_reset = new ControlButton11_1(button_shape, 550, 600, button_size, "reset");  
+    ControlButton11_1 button_backward = new ControlButton11_1(button_shape, 650, 600, button_size, "backward");
     RectButton button_solution = new RectButton("đáp án", 1280, 100, 30);
     
     //set ant to start point
@@ -183,7 +183,7 @@ class MainModel11_1 {
     
     void draw() {
         //loop period
-        count_pediod = (count_pediod + 1) % pediod;
+        count_period = (count_period + 1) % period;
         
         //draw main model
         noFill();
@@ -277,9 +277,9 @@ class MainModel11_1 {
                 strokeWeight(border_size);
                 line(x_cur, y_cur, x_cur + segment, y_cur);
                 strokeWeight(arrow_size);
-                for(int i = count_pediod; i < segment; i += pediod) {
-                    line(x_cur + i, y_cur, x_cur + i - pediod / 2, y_cur - pediod / 4);
-                    line(x_cur + i, y_cur, x_cur + i - pediod / 2, y_cur + pediod / 4);
+                for(int i = count_period; i < segment; i += period) {
+                    line(x_cur + i, y_cur, x_cur + i - period / 2, y_cur - period / 4);
+                    line(x_cur + i, y_cur, x_cur + i - period / 2, y_cur + period / 4);
                 }
                 
                 strokeWeight(dot_size);
@@ -290,9 +290,9 @@ class MainModel11_1 {
                 strokeWeight(border_size);
                 line(x_cur, y_cur, x_cur, y_cur - segment);
                 strokeWeight(arrow_size);
-                for(int i = count_pediod; i < segment; i += pediod) {
-                    line(x_cur, y_cur - i, x_cur + pediod / 4, y_cur - i + pediod / 2);
-                    line(x_cur, y_cur - i, x_cur - pediod / 4, y_cur - i + pediod / 2);
+                for(int i = count_period; i < segment; i += period) {
+                    line(x_cur, y_cur - i, x_cur + period / 4, y_cur - i + period / 2);
+                    line(x_cur, y_cur - i, x_cur - period / 4, y_cur - i + period / 2);
                 }
                 
                 strokeWeight(dot_size);
@@ -326,7 +326,7 @@ class MainModel11_1 {
         image(ant, x_cur - ant_size / 2, y_cur - ant_size / 2, ant_size, ant_size);
 
         //congratulation
-        if(listAnswer.size() == 6) {
+        if(listAnswer.size() == solution.length) {
             fill(231, 76, 60);
             textSize(50.0);
             text("CONGRATULATION!!!", 1000, 600, 50);
