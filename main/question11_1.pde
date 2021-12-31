@@ -391,6 +391,11 @@ class MainModel11_1 {
             }
         }
     }
+
+    void reset() {
+        init();
+        listAnswer.clear();
+    }
 }
 
 class Question11_1 extends Question { 
@@ -410,5 +415,10 @@ class Question11_1 extends Question {
     void mousePressed() {
         super.mousePressed();
         model.mousePressed();
+    }
+
+    void reset() {
+        super.reset();
+        model.reset();
     }
 }
