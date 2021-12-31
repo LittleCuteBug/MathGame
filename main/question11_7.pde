@@ -434,6 +434,13 @@ class MainModel11_7 {
             }
         }
     }
+
+    void reset() {
+        if(counter == 0) {
+            init();
+            listAnswer.clear();
+        }
+    }
 }
 
 class Question11_7 extends Question { 
@@ -453,5 +460,10 @@ class Question11_7 extends Question {
     void mousePressed() {
         super.mousePressed();
         model.mousePressed();
+    }
+
+    void reset() {
+        super.reset();
+        model.reset();
     }
 }

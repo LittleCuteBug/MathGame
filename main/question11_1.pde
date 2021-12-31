@@ -137,7 +137,7 @@ class MainModel11_1 {
     int x_start = 350;
     int y_start = 500;
     int delay = 20;
-    int speed = 1;
+    int speed = 4;
     int pediod = 20;
     int count_pediod = 0;
     
@@ -397,7 +397,6 @@ class MainModel11_1 {
             init();
             listAnswer.clear();
         }
-        
     }
 }
 
