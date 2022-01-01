@@ -176,10 +176,10 @@ class MainModel11_7 {
     int button_size = 20;
     String button_shape = "o|o";
     ControlButton11_7 button_up = new ControlButton11_7(button_shape, 350, 525, button_size, "up");
-    ControlButton11_7 button_right = new ControlButton11_7(button_shape, 450, 525, button_size, "right");
-    ControlButton11_7 button_cross = new ControlButton11_7(button_shape, 550, 525, button_size, "cross");
-    ControlButton11_7 button_reset = new ControlButton11_7(button_shape, 350, 625, button_size, "reset");
-    ControlButton11_7 button_backward = new ControlButton11_7(button_shape, 650, 525, button_size, "backward");
+    ControlButton11_7 button_right = new ControlButton11_7(button_shape, 425, 525, button_size, "right");
+    ControlButton11_7 button_cross = new ControlButton11_7(button_shape, 500, 525, button_size, "cross");
+    ControlButton11_7 button_reset = new ControlButton11_7(button_shape, 650, 525, button_size, "reset");
+    ControlButton11_7 button_backward = new ControlButton11_7(button_shape, 575, 525, button_size, "backward");
     RectButton button_solution = new RectButton("đáp án", 1280, 100, 30);
     
     //set ant to start point
