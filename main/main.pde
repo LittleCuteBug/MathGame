@@ -314,3 +314,10 @@ void mousePressed() {
       break;
   }
 }
+void keyPressed() {
+  switch(currentPage.trim()) {
+    case "Quiz 11.3":
+      question.get(2).keyPressed();
+      break;
+  }
+}
