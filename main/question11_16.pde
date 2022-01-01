@@ -165,7 +165,7 @@ class MainModel11_16 {
                       rect(x_start + segment*i, y_start + segment* j /2, segment, segment/2);
                     }
         }
-        textSize(32);
+        textSize(28);
         fill(0,0,255);
         text("Số tờ 1$", x_start, y_start, segment, segment/2);
         text("Số tờ 2$", x_start+segment, y_start, segment, segment/2);
