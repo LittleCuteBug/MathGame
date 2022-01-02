@@ -33,6 +33,7 @@ class Question {
   }
 
   void reset() {
+    menu.achievements.get(currentPage).display = false;
     isFinish = false;
   }
 
