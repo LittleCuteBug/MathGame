@@ -3,7 +3,7 @@
 String currentPage = "menu";
 
 Menu menu = new Menu();
-ArrayList<Question> question = new ArrayList<Question>();
+HashMap<String, Question> question = new HashMap<String, Question>();
 
 PImage questionBG, congratIMG, tryAgainIMG, starIMG;
 
@@ -15,48 +15,48 @@ void setup() {
   starIMG = loadImage("../data/img/star.png");
   menu.setup();
   
-  question.add(new Question11_1());
-  question.add(new Question11_2());
-  question.add(new Question11_3());
-  question.add(new Question11_4());
-  question.add(new Question11_5());
-  question.add(new Question11_6());
-  question.add(new Question11_7());
-  question.add(new Question11_8());
-  question.add(new Question11_9());
-  question.add(new Question11_10());
-  question.add(new Question11_11());
-  question.add(new Question11_12());
-  question.add(new Question11_13());
-  question.add(new Question11_14());
-  question.add(new Question11_15());
-  question.add(new Question11_16());
-  question.add(new Question11_17());
-  question.add(new Question11_18());
-  question.add(new Question12_1());
-  question.add(new Question12_2());
-  question.add(new Question12_3());
-  question.add(new Question12_4());
-  question.add(new Question12_5());
-  question.add(new Question12_6());
-  question.add(new Question12_7());
-  question.add(new Question12_8());
-  question.add(new Question12_9());
-  question.add(new Question12_10());
-  question.add(new Question12_11());
-  question.add(new Question12_12());
-  question.add(new Question12_13());
-  question.add(new Question12_14());
-  question.add(new Question12_15());
-  question.add(new Question12_16());
-  question.add(new Question12_17());
-  question.add(new Question12_18());
-  question.add(new Question12_19());
-  question.add(new Question12_20());
-  question.add(new Question12_21());
-  question.add(new Question12_22());
+  question.put("Quiz 11.1", new Question11_1());
+  question.put("Quiz 11.2", new Question11_2());
+  question.put("Quiz 11.3", new Question11_3());
+  question.put("Quiz 11.4", new Question11_4());
+  question.put("Quiz 11.5", new Question11_5());
+  question.put("Quiz 11.6", new Question11_6());
+  question.put("Quiz 11.7", new Question11_7());
+  question.put("Quiz 11.8", new Question11_8());
+  question.put("Quiz 11.9", new Question11_9());
+  question.put("Quiz 11.10", new Question11_10());
+  question.put("Quiz 11.11", new Question11_11());
+  question.put("Quiz 11.12", new Question11_12());
+  question.put("Quiz 11.13", new Question11_13());
+  question.put("Quiz 11.14", new Question11_14());
+  question.put("Quiz 11.15", new Question11_15());
+  question.put("Quiz 11.16", new Question11_16());
+  question.put("Quiz 11.17", new Question11_17());
+  question.put("Quiz 11.18", new Question11_18());
+  question.put("Quiz 12.1", new Question12_1());
+  question.put("Quiz 12.2", new Question12_2());
+  question.put("Quiz 12.3", new Question12_3());
+  question.put("Quiz 12.4", new Question12_4());
+  question.put("Quiz 12.5", new Question12_5());
+  question.put("Quiz 12.6", new Question12_6());
+  question.put("Quiz 12.7", new Question12_7());
+  question.put("Quiz 12.8", new Question12_8());
+  question.put("Quiz 12.9", new Question12_9());
+  question.put("Quiz 12.10", new Question12_10());
+  question.put("Quiz 12.11", new Question12_11());
+  question.put("Quiz 12.12", new Question12_12());
+  question.put("Quiz 12.13", new Question12_13());
+  question.put("Quiz 12.14", new Question12_14());
+  question.put("Quiz 12.15", new Question12_15());
+  question.put("Quiz 12.16", new Question12_16());
+  question.put("Quiz 12.17", new Question12_17());
+  question.put("Quiz 12.18", new Question12_18());
+  question.put("Quiz 12.19", new Question12_19());
+  question.put("Quiz 12.20", new Question12_20());
+  question.put("Quiz 12.21", new Question12_21());
+  question.put("Quiz 12.22", new Question12_22());
 
-  for (Question q : question){
+  for (Question q : question.values()){
     q.setup();
   }
   
@@ -66,385 +66,25 @@ void setup() {
 
 void draw() {
   background(255);
-  switch(currentPage.trim()) {
-    case "menu":
-      menu.draw();
-      break;
-    case "Quiz 11.1":
-      question.get(0)._draw();
-      break;
-    case "Quiz 11.2":
-      question.get(1)._draw();
-      break;
-    case "Quiz 11.3":
-      question.get(2)._draw();
-      break;
-    case "Quiz 11.4":
-      question.get(3)._draw();
-      break;
-    case "Quiz 11.5":
-      question.get(4)._draw();
-      break;
-    case "Quiz 11.6":
-      question.get(5)._draw();
-      break;
-    case "Quiz 11.7":
-      question.get(6)._draw();
-      break;
-    case "Quiz 11.8":
-      question.get(7)._draw();
-      break;
-    case "Quiz 11.9":
-      question.get(8)._draw();
-      break;
-    case "Quiz 11.10":
-      question.get(9)._draw();
-      break;
-    case "Quiz 11.11":
-      question.get(10)._draw();
-      break;
-    case "Quiz 11.12":
-      question.get(11)._draw();
-      break;
-    case "Quiz 11.13":
-      question.get(12)._draw();
-      break;
-    case "Quiz 11.14":
-      question.get(13)._draw();
-      break;
-    case "Quiz 11.15":
-      question.get(14)._draw();
-      break;
-    case "Quiz 11.16":
-      question.get(15)._draw();
-      break;
-    case "Quiz 11.17":
-      question.get(16)._draw();
-      break;
-    case "Quiz 11.18":
-      question.get(17)._draw();
-      break;
-    case "Quiz 12.1":
-      question.get(18)._draw();
-      break;
-    case "Quiz 12.2":
-      question.get(19)._draw();
-      break;
-    case "Quiz 12.3":
-      question.get(20)._draw();
-      break;
-    case "Quiz 12.4":
-      question.get(21)._draw();
-      break;
-    case "Quiz 12.5":
-      question.get(22)._draw();
-      break;
-    case "Quiz 12.6":
-      question.get(23)._draw();
-      break;
-    case "Quiz 12.7":
-      question.get(24)._draw();
-      break;
-    case "Quiz 12.8":
-      question.get(25)._draw();
-      break;
-    case "Quiz 12.9":
-      question.get(26)._draw();
-      break;
-    case "Quiz 12.10":
-      question.get(27)._draw();
-      break;
-    case "Quiz 12.11":
-      question.get(28)._draw();
-      break;
-    case "Quiz 12.12":
-      question.get(29)._draw();
-      break;
-    case "Quiz 12.13":
-      question.get(30)._draw();
-      break;
-    case "Quiz 12.14":
-      question.get(31)._draw();
-      break;
-    case "Quiz 12.15":
-      question.get(32)._draw();
-      break;
-    case "Quiz 12.16":
-      question.get(33)._draw();
-      break;
-    case "Quiz 12.17":
-      question.get(34)._draw();
-      break;
-    case "Quiz 12.18":
-      question.get(35)._draw();
-      break;
-    case "Quiz 12.19":
-      question.get(36)._draw();
-      break;
-    case "Quiz 12.20":
-      question.get(37)._draw();
-      break;
-    case "Quiz 12.21":
-      question.get(38)._draw();
-      break;
-    case "Quiz 12.22":
-      question.get(39)._draw();
-      break;
+
+  if(currentPage == "menu") {
+    menu.draw();
+  } else {
+    if(currentPage.substring(0,5).equals("Quiz "))
+      question.get(currentPage)._draw();
   }
 }
 
 void mousePressed() {
-  switch(currentPage.trim()) {
-    case "menu":
-      menu.mousePressed();
-      break;
-    case "Quiz 11.1":
-      question.get(0)._mousePressed();
-      break;
-    case "Quiz 11.2":
-      question.get(1)._mousePressed();
-      break;
-    case "Quiz 11.3":
-      question.get(2)._mousePressed();
-      break;
-    case "Quiz 11.4":
-      question.get(3)._mousePressed();
-      break;
-    case "Quiz 11.5":
-      question.get(4)._mousePressed();
-      break;
-    case "Quiz 11.6":
-      question.get(5)._mousePressed();
-      break;
-    case "Quiz 11.7":
-      question.get(6)._mousePressed();
-      break;
-    case "Quiz 11.8":
-      question.get(7)._mousePressed();
-      break;
-    case "Quiz 11.9":
-      question.get(8)._mousePressed();
-      break;
-    case "Quiz 11.10":
-      question.get(9)._mousePressed();
-      break;
-    case "Quiz 11.11":
-      question.get(10)._mousePressed();
-      break;
-    case "Quiz 11.12":
-      question.get(11)._mousePressed();
-      break;
-    case "Quiz 11.13":
-      question.get(12)._mousePressed();
-      break;
-    case "Quiz 11.14":
-      question.get(13)._mousePressed();
-      break;
-    case "Quiz 11.15":
-      question.get(14)._mousePressed();
-      break;
-    case "Quiz 11.16":
-      question.get(15)._mousePressed();
-      break;
-    case "Quiz 11.17":
-      question.get(16)._mousePressed();
-      break;
-    case "Quiz 11.18":
-      question.get(17)._mousePressed();
-      break;
-    case "Quiz 12.1":
-      question.get(18)._mousePressed();
-      break;
-    case "Quiz 12.2":
-      question.get(19)._mousePressed();
-      break;
-    case "Quiz 12.3":
-      question.get(20)._mousePressed();
-      break;
-    case "Quiz 12.4":
-      question.get(21)._mousePressed();
-      break;
-    case "Quiz 12.5":
-      question.get(22)._mousePressed();
-      break;
-    case "Quiz 12.6":
-      question.get(23)._mousePressed();
-      break;
-    case "Quiz 12.7":
-      question.get(24)._mousePressed();
-      break;
-    case "Quiz 12.8":
-      question.get(25)._mousePressed();
-      break;
-    case "Quiz 12.9":
-      question.get(26)._mousePressed();
-      break;
-    case "Quiz 12.10":
-      question.get(27)._mousePressed();
-      break;
-    case "Quiz 12.11":
-      question.get(28)._mousePressed();
-      break;
-    case "Quiz 12.12":
-      question.get(29)._mousePressed();
-      break;
-    case "Quiz 12.13":
-      question.get(30)._mousePressed();
-      break;
-    case "Quiz 12.14":
-      question.get(31)._mousePressed();
-      break;
-    case "Quiz 12.15":
-      question.get(32)._mousePressed();
-      break;
-    case "Quiz 12.16":
-      question.get(33)._mousePressed();
-      break;
-    case "Quiz 12.17":
-      question.get(34)._mousePressed();
-      break;
-    case "Quiz 12.18":
-      question.get(35)._mousePressed();
-      break;
-    case "Quiz 12.19":
-      question.get(36)._mousePressed();
-      break;
-    case "Quiz 12.20":
-      question.get(37)._mousePressed();
-      break;
-    case "Quiz 12.21":
-      question.get(38)._mousePressed();
-      break;
-    case "Quiz 12.22":
-      question.get(39)._mousePressed();
-      break;
+  if(currentPage == "menu") {
+    menu.mousePressed();
+  } else {
+    if(currentPage.substring(0,5).equals("Quiz "))
+      question.get(currentPage)._mousePressed();
   }
 }
 
 void keyPressed() {
-  switch(currentPage.trim()) {
-    case "menu":
-      menu.mousePressed();
-      break;
-    case "Quiz 11.1":
-      question.get(0).keyPressed();
-      break;
-    case "Quiz 11.2":
-      question.get(1).keyPressed();
-      break;
-    case "Quiz 11.3":
-      question.get(2).keyPressed();
-      break;
-    case "Quiz 11.4":
-      question.get(3).keyPressed();
-      break;
-    case "Quiz 11.5":
-      question.get(4).keyPressed();
-      break;
-    case "Quiz 11.6":
-      question.get(5).keyPressed();
-      break;
-    case "Quiz 11.7":
-      question.get(6).keyPressed();
-      break;
-    case "Quiz 11.8":
-      question.get(7).keyPressed();
-      break;
-    case "Quiz 11.9":
-      question.get(8).keyPressed();
-      break;
-    case "Quiz 11.10":
-      question.get(9).keyPressed();
-      break;
-    case "Quiz 11.11":
-      question.get(10).keyPressed();
-      break;
-    case "Quiz 11.12":
-      question.get(11).keyPressed();
-      break;
-    case "Quiz 11.13":
-      question.get(12).keyPressed();
-      break;
-    case "Quiz 11.14":
-      question.get(13).keyPressed();
-      break;
-    case "Quiz 11.15":
-      question.get(14).keyPressed();
-      break;
-    case "Quiz 11.16":
-      question.get(15).keyPressed();
-      break;
-    case "Quiz 11.17":
-      question.get(16).keyPressed();
-      break;
-    case "Quiz 11.18":
-      question.get(17).keyPressed();
-      break;
-    case "Quiz 12.1":
-      question.get(18).keyPressed();
-      break;
-    case "Quiz 12.2":
-      question.get(19).keyPressed();
-      break;
-    case "Quiz 12.3":
-      question.get(20).keyPressed();
-      break;
-    case "Quiz 12.4":
-      question.get(21).keyPressed();
-      break;
-    case "Quiz 12.5":
-      question.get(22).keyPressed();
-      break;
-    case "Quiz 12.6":
-      question.get(23).keyPressed();
-      break;
-    case "Quiz 12.7":
-      question.get(24).keyPressed();
-      break;
-    case "Quiz 12.8":
-      question.get(25).keyPressed();
-      break;
-    case "Quiz 12.9":
-      question.get(26).keyPressed();
-      break;
-    case "Quiz 12.10":
-      question.get(27).keyPressed();
-      break;
-    case "Quiz 12.11":
-      question.get(28).keyPressed();
-      break;
-    case "Quiz 12.12":
-      question.get(29).keyPressed();
-      break;
-    case "Quiz 12.13":
-      question.get(30).keyPressed();
-      break;
-    case "Quiz 12.14":
-      question.get(31).keyPressed();
-      break;
-    case "Quiz 12.15":
-      question.get(32).keyPressed();
-      break;
-    case "Quiz 12.16":
-      question.get(33).keyPressed();
-      break;
-    case "Quiz 12.17":
-      question.get(34).keyPressed();
-      break;
-    case "Quiz 12.18":
-      question.get(35).keyPressed();
-      break;
-    case "Quiz 12.19":
-      question.get(36).keyPressed();
-      break;
-    case "Quiz 12.20":
-      question.get(37).keyPressed();
-      break;
-    case "Quiz 12.21":
-      question.get(38).keyPressed();
-      break;
-    case "Quiz 12.22":
-      question.get(39).keyPressed();
-      break;
-  }
+  if(currentPage.substring(0,5).equals("Quiz "))
+      question.get(currentPage).keyPressed();
 }

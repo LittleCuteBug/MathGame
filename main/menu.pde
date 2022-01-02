@@ -29,7 +29,7 @@ class Menu {
           if (p_th < 10)
             bText += "  ";
           page.add(new RectButton(bText , 350 + i * 160, 100 + j * 90, 25));
-          achievements.put(bText, new AchievementsStar(350 + i * 160, 100 + j * 90));
+          achievements.put(bText.trim(), new AchievementsStar(350 + i * 160, 100 + j * 90));
         }
       }
     }
@@ -42,7 +42,7 @@ class Menu {
           if (p_th < 10)
             bText += "  ";
           page.add(new RectButton(bText , 350 + i * 160, 400 + j * 90, 25));
-          achievements.put(bText, new AchievementsStar(350 + i * 160, 400 + j * 90));
+          achievements.put(bText.trim(), new AchievementsStar(350 + i * 160, 400 + j * 90));
         }
       }
     }
@@ -63,7 +63,7 @@ class Menu {
   void mousePressed() {
     for(int i=0; i<page.size();i++) {
       if(page.get(i).clicked()) {
-        currentPage = page.get(i).b_text;
+        currentPage = page.get(i).b_text.trim();
       }
     }
   }
