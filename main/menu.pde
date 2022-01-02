@@ -1,6 +1,23 @@
+import java.util.Map;
+
+class AchievementsStar {
+  float x, y;
+  boolean display = false;
+  AchievementsStar(float _x, float _y) {
+    x = _x;
+    y = _y;
+  }
+  void draw() {
+    if(display)
+      image(starIMG, x + 40, y);
+  }
+}
+
 class Menu {
   RectButton page1 = new RectButton("Pages 1", 300, 200);
   ArrayList<RectButton> page = new ArrayList<RectButton>();
+  HashMap<String, AchievementsStar> achievements = new HashMap<String, AchievementsStar>();
+
   PImage bg;
   
   void setup() {
@@ -12,6 +29,7 @@ class Menu {
           if (p_th < 10)
             bText += "  ";
           page.add(new RectButton(bText , 350 + i * 160, 100 + j * 90, 25));
+          achievements.put(bText, new AchievementsStar(350 + i * 160, 100 + j * 90));
         }
       }
     }
@@ -24,6 +42,7 @@ class Menu {
           if (p_th < 10)
             bText += "  ";
           page.add(new RectButton(bText , 350 + i * 160, 400 + j * 90, 25));
+          achievements.put(bText, new AchievementsStar(350 + i * 160, 400 + j * 90));
         }
       }
     }
@@ -34,6 +53,10 @@ class Menu {
     background(bg);
     for(RectButton button : page) {
       button.draw();
+    }
+
+    for(AchievementsStar star : achievements.values()) {
+      star.draw();
     }
   }
   

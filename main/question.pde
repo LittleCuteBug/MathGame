@@ -37,6 +37,7 @@ class Question {
   }
 
   void finish(boolean is_correct) {
+    menu.achievements.get(currentPage).display = is_correct;
     isCorrect = is_correct;
     isFinish = true;
   }
@@ -62,9 +63,5 @@ class Question {
   
   void mousePressed() {
 
-  }
-
-  void keyPressed() {
-    
   }
 }
