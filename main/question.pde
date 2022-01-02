@@ -64,4 +64,8 @@ class Question {
   void mousePressed() {
 
   }
+
+  void keyPressed() {
+
+  }
 }
