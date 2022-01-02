@@ -69,6 +69,8 @@ class Question11_3 extends Question {
   RectButton showResult = new RectButton("Xem hướng dẫn", 950, 580, 25);
   TextBox soThuNhat = new TextBox(540, 300, 270, 60);
   TextBox soThuHai = new TextBox(540, 375, 270, 60);
+  PImage congratIMG = loadImage("../data/img/congratBG.png");
+  PImage tryAgainIMG = loadImage("../data/img/tryAgainBG.png");
 
 
   void state_0_draw() {
@@ -113,12 +115,12 @@ class Question11_3 extends Question {
       check = true;
     fill(#f50010);
     textSize(45);
-    if (check)
-      text("Chúc mừng bạn !!!", 450, 200);
-    else
-      text("Kết quả chưa chính xác", 450, 200);
     tryAgain.draw();
     showResult.draw();
+    if (check)
+      image(congratIMG, 0, 0);
+    else
+      image(tryAgainIMG, 0, 0);
   }
   void state_1_keyPressed() {
   }
