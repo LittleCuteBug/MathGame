@@ -118,9 +118,17 @@ class Question11_3 extends Question {
     tryAgain.draw();
     showResult.draw();
     if (check)
-      image(congratIMG, 0, 0);
+      //image(congratIMG, 0, 0);
+      finish(true);
     else
-      image(tryAgainIMG, 0, 0);
+      //image(tryAgainIMG, 0, 0);
+      finish(false);
+  }
+  void reset() {
+    super.reset();
+    soThuNhat.setText("");
+    soThuHai.setText("");
+    state = 0;
   }
   void state_1_keyPressed() {
   }
