@@ -166,6 +166,16 @@ class Question11_10 extends Question {
       mayor.draw();
     }
   }
+
+  void reset() {
+    super.reset();
+    for(ChooseButton b : mayorMain.button) {
+      b.is_chose = false;
+    }
+    for(Mayor m : mayorAns) {
+      m.is_display = false;
+    }
+  }
   
   void mousePressed() {
     super.mousePressed();
@@ -176,11 +186,16 @@ class Question11_10 extends Question {
     }
     if(check.clicked()) {
       String s =mayorMain.getClick();
+      int cnt = 0;
       for(Mayor m : mayorAns) {
         if(s.equals(m.getClick())) {
           m.is_display = true;
         }
+        if(m.is_display)
+          cnt++;
       }
+        if(cnt == 12)
+          finish(true);
     }
   }
 }
