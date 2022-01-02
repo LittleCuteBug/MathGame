@@ -138,11 +138,11 @@ class Question11_3 extends Question {
     textSize(35);
     text("Bước 1: Tìm các cặp số có tích là 36:", 350, 240);
     fill(#0fbd09);
-    text("1 và 36" , 500, 275);
-    text("2 và 18" , 500, 305);
-    text("3 và 12" , 500, 335);
-    text("4 và 9" , 500, 365);
-    text("6 và 6" , 500, 395);
+    text("1 x 36 = 36" , 500, 275);
+    text("2 x 18 = 36" , 500, 305);
+    text("3 x 12 = 36" , 500, 335);
+    text("4 x 9 = 36" , 500, 365);
+    text("6 x 6 = 36" , 500, 395);
     fill(#001fba);
     text("Bước 2: Chọn cặp số mà tổng của hai số là 15" , 350, 445);
     text("Ta tìm được hai số là 3 và 12" , 460, 480);
