@@ -85,6 +85,6 @@ void mousePressed() {
 }
 
 void keyPressed() {
-  if(currentPage.substring(0,5).equals("Quiz "))
+  if(currentPage.length() >= 5 && currentPage.substring(0,5).equals("Quiz "))
       question.get(currentPage).keyPressed();
 }
