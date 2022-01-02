@@ -19,15 +19,16 @@ class Question11_2 extends Question {
   }
 
   void reset() {
+    super.reset();
     for (AnswerChoicesButton b: answer) {
       b.is_answered = false;
     }
   }
   
-  void mousePressed() {
-    super.mousePressed();
+  void mousePressed() { 
     for (AnswerChoicesButton button: answer) {
       if(button.clicked()) {
+        finish(button.is_correct_answer);
         for (AnswerChoicesButton b: answer) {
           b.is_answered = true;
         }
