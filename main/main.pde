@@ -319,3 +319,132 @@ void mousePressed() {
       break;
   }
 }
+
+void keyPressed() {
+  switch(currentPage.trim()) {
+    case "menu":
+      menu.mousePressed();
+      break;
+    case "Quiz 11.1":
+      question.get(0).keyPressed();
+      break;
+    case "Quiz 11.2":
+      question.get(1).keyPressed();
+      break;
+    case "Quiz 11.3":
+      question.get(2).keyPressed();
+      break;
+    case "Quiz 11.4":
+      question.get(3).keyPressed();
+      break;
+    case "Quiz 11.5":
+      question.get(4).keyPressed();
+      break;
+    case "Quiz 11.6":
+      question.get(5).keyPressed();
+      break;
+    case "Quiz 11.7":
+      question.get(6).keyPressed();
+      break;
+    case "Quiz 11.8":
+      question.get(7).keyPressed();
+      break;
+    case "Quiz 11.9":
+      question.get(8).keyPressed();
+      break;
+    case "Quiz 11.10":
+      question.get(9).keyPressed();
+      break;
+    case "Quiz 11.11":
+      question.get(10).keyPressed();
+      break;
+    case "Quiz 11.12":
+      question.get(11).keyPressed();
+      break;
+    case "Quiz 11.13":
+      question.get(12).keyPressed();
+      break;
+    case "Quiz 11.14":
+      question.get(13).keyPressed();
+      break;
+    case "Quiz 11.15":
+      question.get(14).keyPressed();
+      break;
+    case "Quiz 11.16":
+      question.get(15).keyPressed();
+      break;
+    case "Quiz 11.17":
+      question.get(16).keyPressed();
+      break;
+    case "Quiz 11.18":
+      question.get(17).keyPressed();
+      break;
+    case "Quiz 12.1":
+      question.get(18).keyPressed();
+      break;
+    case "Quiz 12.2":
+      question.get(19).keyPressed();
+      break;
+    case "Quiz 12.3":
+      question.get(20).keyPressed();
+      break;
+    case "Quiz 12.4":
+      question.get(21).keyPressed();
+      break;
+    case "Quiz 12.5":
+      question.get(22).keyPressed();
+      break;
+    case "Quiz 12.6":
+      question.get(23).keyPressed();
+      break;
+    case "Quiz 12.7":
+      question.get(24).keyPressed();
+      break;
+    case "Quiz 12.8":
+      question.get(25).keyPressed();
+      break;
+    case "Quiz 12.9":
+      question.get(26).keyPressed();
+      break;
+    case "Quiz 12.10":
+      question.get(27).keyPressed();
+      break;
+    case "Quiz 12.11":
+      question.get(28).keyPressed();
+      break;
+    case "Quiz 12.12":
+      question.get(29).keyPressed();
+      break;
+    case "Quiz 12.13":
+      question.get(30).keyPressed();
+      break;
+    case "Quiz 12.14":
+      question.get(31).keyPressed();
+      break;
+    case "Quiz 12.15":
+      question.get(32).keyPressed();
+      break;
+    case "Quiz 12.16":
+      question.get(33).keyPressed();
+      break;
+    case "Quiz 12.17":
+      question.get(34).keyPressed();
+      break;
+    case "Quiz 12.18":
+      question.get(35).keyPressed();
+      break;
+    case "Quiz 12.19":
+      question.get(36).keyPressed();
+      break;
+    case "Quiz 12.20":
+      question.get(37).keyPressed();
+      break;
+    case "Quiz 12.21":
+      question.get(38).keyPressed();
+      break;
+    case "Quiz 12.22":
+      question.get(39).keyPressed();
+      break;
+  }
+}
+
