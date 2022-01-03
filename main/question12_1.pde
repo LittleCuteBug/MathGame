@@ -2,10 +2,10 @@ class Question12_1 extends Question {
   String answer[] = new String[2];
   String res = "";
   int state = 0;
-  int big = 60;
-  int small = 50;
+  int big = 35;
+  int small = 25;
   int pos = 1366;
-  int curSum = 110;
+  int curSum = big + small;
   int rate = 0;
   int curColor = 0;
   
@@ -21,7 +21,7 @@ class Question12_1 extends Question {
   boolean sol = false;
   void setup() {
     super.setup();
-    String quizText = "Câu 12_1: Chia 110 viên bi vào 2 túi sao cho túi thứ nhất nhiều hơn túi thứ hai 10 viên. Hỏi có bao nhiêu viên bi trong mỗi túi?";
+    String quizText = "Câu 12_1: Amanda và Nancy có 60 đô-la. Amanda có nhiều hơn Nancy 10 đô-la. Hỏi mỗi bạn có bao nhiêu đô-la.";
     quiz = new QuizText(quizText);
     answer[0] = answer[1] = "";
     strokeWeight(3);
@@ -37,13 +37,13 @@ class Question12_1 extends Question {
     if (state == 0) {
       stroke(255, 0, 0); 
     }
-    fill(12, 76, 165);
+    fill(180);
     rect(300,posYAnswerBox,150,50); /// answerB box 
     stroke(0);
     if (state == 1) {
       stroke(255, 0, 0); 
     }
-    fill(12, 76, 165);
+    fill(180);
     rect(500,posYAnswerBox,150,50); /// answerS box 
     stroke(0);
     fill(255, 198, 8);
@@ -81,7 +81,7 @@ class Question12_1 extends Question {
       fill(255 - curColor);
       text(big, posXBox + bigBoxLength + 20,225 + 35); /// Bignumber box
       text(big, posXBox + bigBoxLength + 20,300 + 35); /// Smallnumber box
-      text("Số lớn là: " + str(2 * big) + " / 2 = " + str(big) + ". " + "Số bé là: " + str(big) + " - " + str(big - small) + " = " + str(small) + ".", 180, 420);
+      text("Số lớn là: (" + str(big + small) + " + " + str(big - small) + ")" + " / 2 = " + str(big) + ". " + "Số bé là: " + str(big) + " - " + str(big - small) + " = " + str(small) + ".", 180, 420);
     }
     if (curColor == 255) {
       curSum = big * 2;
