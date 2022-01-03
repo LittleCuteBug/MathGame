@@ -319,5 +319,8 @@ void keyPressed() {
     case "Quiz 12.1":
       question.get(18).keyPressed();
       break;
+    case "Quiz 12.2":
+      question.get(19).keyPressed();
+      break;  
   }
 }
