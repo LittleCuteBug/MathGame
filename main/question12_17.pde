@@ -4,6 +4,7 @@ class ModelObject {
     int remain = 0;
     int await = 0;
     int hide = 80;
+    int diff = 0;
     
     //to draw
     int x_start = 0;
@@ -13,10 +14,12 @@ class ModelObject {
     int width = 50;
     
     //image
+    PImage pointer = loadImage("../data/img/pointer.png");
     PImage img;
     int imgSize = 100;
     int x_img = 0;
     int y_img = 0;
+    int radio = 10;
     
     ModelObject(int _ordinal, int _remain) {
         ordinal = _ordinal;
@@ -33,17 +36,64 @@ class ModelObject {
         y = _y;
     }
     
+    void drawPointer() {
+        draw();
+        image(pointer, x_img - 3 * imgSize / 4, y_img + imgSize / 4, imgSize / 2, imgSize / 2);
+    }
+
+    void drawDiff() {
+        fill(0);
+        textAlign(CENTER);
+        textSize(40);
+        if(diff > 0) {
+            text("+" + str(diff), x_end + await * segment + 30, y + 36);
+        } else if(diff < 0) {
+            text(str(diff), x_end + await * segment + 30, y + 36);
+        }
+        textSize(12);
+    }
+
     void draw() {
         //draw object
         x_end = x_start + (remain - hide - await) * segment;
         stroke(0);
         strokeWeight(2);
         fill(255, 0, 0);
-        rect(x_start, y, x_end - x_start, width);
+        rect(x_start, y, x_end - x_start + await * segment, width, radio);
         fill(0, 255, 0);
-        rect(x_end, y, await * segment, width);
+        if(await > 0) {
+            rect(x_end, y, await * segment, width, radio);
+        }
         
-        x_img = x_start - imgSize - 10;
+        fill(0);
+        textAlign(CENTER);
+        textSize(30);
+        text(remain - await, x_start + (x_end - x_start) / 2, y + 35);
+        textSize(12);
+        
+        if(await > 0) {
+            if(await > 2) {
+                stroke(0);
+                noFill();
+                line(x_end + segment / 2, y - 20, x_end + await * segment - segment / 2, y - 20);
+                arc(x_end + segment / 2, y - 20 + segment / 2, segment, segment, PI, 3 * PI / 2);
+                arc(x_end + await * segment - segment / 2, y - 20 + segment / 2, segment, segment, -PI / 2, 0);
+            }
+            
+            rectMode(CENTER);
+            fill(255);
+            noStroke();
+            textSize(30);
+            rect(x_end + await * segment / 2, y - 20, textWidth(str(await)) + 10, 10);
+            textAlign(CENTER);
+            fill(0);
+            text(await, x_end + await * segment / 2, y - 10);
+            textSize(12);
+            
+            rectMode(CORNER);
+        }
+        
+        x_img = x_start - imgSize - 20;
         y_img = y - imgSize / 2 + width / 2;
         image(img, x_img, y_img, imgSize, imgSize);
     }
@@ -60,6 +110,12 @@ class ModelObject {
         }
         return false;
     }
+
+    void reset() {
+        remain -= diff;
+        diff = 0;
+        await = 0;
+    }
 }
 
 class MainModel12_17 {
@@ -67,10 +123,10 @@ class MainModel12_17 {
     int delay = 5;
     int speed = 4;
     
-    int x = 300;
+    int x = 350;
     int y = 200;
-    int distance = 100;
-    int dis = 20;
+    int distance = 150;
+    int dis = 30;
     
     //movement
     int x_cur = 0;
@@ -79,21 +135,59 @@ class MainModel12_17 {
     int y_tar = 0;
     
     String state = "idle";
+    int maxRange = 0;
+    int minRange = 5;
+    
     // all component
     ArrayList<ModelObject> listObj = new ArrayList<ModelObject>();
-    RectButton add = new RectButton("Thêm", 300, 600, 20);
-    RectButton sub = new RectButton("Bớt", 400, 600, 20);
-    RectButton depart = new RectButton("Rời", 500, 600, 20);
-    RectButton arrive = new RectButton("Đi", 500, 600, 20);
+    ArrayList<RectButton> addButton = new ArrayList<RectButton>();
+    ArrayList<RectButton> subButton = new ArrayList<RectButton>();
+    
+    {
+        addButton.add(new RectButton("+ 5", 400, 550, 20));
+        addButton.add(new RectButton("+ 2", 475, 550, 20));
+        addButton.add(new RectButton("+ 1", 550, 550, 20));
+        
+        subButton.add(new RectButton("- 1", 625, 550, 20));
+        subButton.add(new RectButton("- 2", 700, 550, 20));
+        subButton.add(new RectButton("- 5", 775, 550, 20));
+    }
+    
+    RectButton depart = new RectButton("Chuyển đi", 475, 650, 20);
+    RectButton arrive = new RectButton("Chuyển đến", 700, 650, 20);
     
     // await
-    ModelObject chosenObj = new ModelObject(0, 100);
+    ModelObject idle = new ModelObject( -1, 100);
+    ModelObject chosenObj = idle;
     int await = 0;
     
     void drawFloat(int temp) {
+        if(temp > 2) {
+            int seg = chosenObj.segment;
+            stroke(0);
+            noFill();
+            line(x_cur + seg / 2, y_cur - 20, x_cur + temp * seg - seg / 2, y_cur - 20);
+            arc(x_cur + seg / 2, y_cur - 20 + seg / 2, seg, seg, PI, 3 * PI / 2);
+            arc(x_cur + temp * seg - seg / 2, y_cur - 20 + seg / 2, seg, seg, -PI / 2, 0);
+        }
+        strokeWeight(2);
         stroke(0);
         fill(0, 255, 0);
-        rect(x_cur, y_cur, temp * chosenObj.segment, chosenObj.width);
+        rect(x_cur, y_cur, temp * chosenObj.segment, chosenObj.width, chosenObj.radio);
+        
+        rectMode(CENTER);
+        fill(255);
+        noStroke();
+        textSize(30);
+        rect(x_cur + temp * chosenObj.segment / 2, y_cur - 20, textWidth(str(temp)) + 10, 10);
+        rectMode(CORNER);
+        
+        textAlign(CENTER);
+        fill(0);
+        textSize(30);
+        text(temp, x_cur + temp * chosenObj.segment / 2, y_cur - 10);
+        textSize(12);
+        
         if(x_cur < x_tar) {
             x_cur += min(speed, x_tar - x_cur);
             return;
@@ -125,16 +219,9 @@ class MainModel12_17 {
         hotel2.setPosition(x, y + distance);
         hotel2.setImage(img, imgSize);
         
-        //object 3
-        
-        ModelObject hotel3 = new ModelObject(1, 98);
-        hotel3.setPosition(x, y + 2 * distance);
-        hotel3.setImage(img, imgSize);
-        
         //push in array
         listObj.add(hotel1);
         listObj.add(hotel2);
-        listObj.add(hotel3);
     }
     
     void draw() {
@@ -146,14 +233,14 @@ class MainModel12_17 {
             }
         }
         //draw buttons
-        add.draw();
-        sub.draw();
-        if(state.equals("depart")) {
-            arrive.draw();
+        for(RectButton button : addButton) {
+            button.draw();
         }
-        if(state.equals("chosen") && await > 0) {
-            depart.draw();
+        for(RectButton button : subButton) {
+            button.draw();
         }
+        arrive.draw();
+        depart.draw();
         
         //draw await
         if(state.equals("depart")) {
@@ -166,6 +253,7 @@ class MainModel12_17 {
                         chosenObj.remain ++;
                         await --;
                     } else {
+                        chosenObj = idle;
                         state = "idle";
                     }
                 }
@@ -173,8 +261,14 @@ class MainModel12_17 {
             
         }
         //draw objects
+        if(!state.equals("idle")) {
+            chosenObj.drawPointer();
+        }
         for(ModelObject obj : listObj) {
             obj.draw();
+            // if(!state.equals("depart")) {
+            //     obj.drawDiff();
+            // }
         }
     }
     
@@ -191,27 +285,51 @@ class MainModel12_17 {
                     counter = max(abs(x_cur - x_tar), abs(y_cur - y_tar)) + delay;
                 }
                 chosenObj.await = 0;
-                chosenObj = obj;         
+                chosenObj = obj;
+                maxRange = obj.remain - obj.hide;
                 break;
             }
         }
         
-        if(add.clicked() && state.equals("chosen") && await < chosenObj.remain - chosenObj.hide) {
-            chosenObj.await ++;
-            await ++;
-            x_cur = chosenObj.x_end;
-            y_cur = chosenObj.y;
+        // add buttons
+        for(RectButton button : addButton) {
+            if(button.clicked() && state.equals("chosen") && await < maxRange - minRange) {
+                int t = button.b_text.charAt(button.b_text.length() - 1) - '0';
+                chosenObj.await += t;
+                if(chosenObj.await > maxRange - minRange) {
+                    chosenObj.await = maxRange - minRange;
+                }
+                await += t;
+                if(await > maxRange - minRange) {
+                    await = maxRange - minRange;
+                }
+                chosenObj.draw();
+                x_cur = chosenObj.x_end;
+                y_cur = chosenObj.y;
+            }
         }
         
-        if(sub.clicked() && state.equals("chosen") && await > 0) {
-            chosenObj.await --;
-            await --;
-            x_cur = chosenObj.x_end;
-            y_cur = chosenObj.y;
+        // sub buttons
+        for(RectButton button : subButton) {
+            if(button.clicked() && state.equals("chosen") && await > 0) {
+                int t = button.b_text.charAt(button.b_text.length() - 1) - '0';
+                chosenObj.await -= t;
+                if(chosenObj.await < 0) {
+                    chosenObj.await = 0;
+                }
+                await -= t;
+                if(await < 0) {
+                    await = 0;
+                }
+                chosenObj.draw();
+                x_cur = chosenObj.x_end;
+                y_cur = chosenObj.y;
+            }
         }
         
         if(state.equals("depart")) {
             if(arrive.clicked() && counter == 0) {
+                chosenObj.diff += await;
                 x_tar = chosenObj.x_end;
                 y_tar = chosenObj.y;
                 counter = max(abs(x_cur - x_tar), abs(y_cur - y_tar)) / speed + delay;
@@ -219,6 +337,7 @@ class MainModel12_17 {
         }
         if(state.equals("chosen") && await > 0) {
             if(depart.clicked() && counter == 0) {
+                chosenObj.diff -= await;
                 x_tar = chosenObj.x_end + dis;
                 y_tar = chosenObj.y;
                 state = "depart";
@@ -230,7 +349,13 @@ class MainModel12_17 {
     }
     
     void reset() {
-        
+        if(counter == 0) {
+            for(ModelObject obj : listObj) {
+                obj.reset();
+            }
+            state = "idle";
+            await = 0;
+        }
     }
 }
 class Question12_17 extends Question {
