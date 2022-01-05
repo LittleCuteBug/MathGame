@@ -69,4 +69,10 @@ class Question {
   void keyPressed() {
 
   }
+  void mouseReleased() {
+    
+  }
+  void mouseDragged() {
+    
+  }
 }
