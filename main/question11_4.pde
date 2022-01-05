@@ -9,6 +9,7 @@ class MainModel11_4 {
     int ansY = 350;
     int ansX = 480;
     int textSize = 30;
+    int checkSol = 0;
     RectButton button1 = new RectButton("1", 450, buttonY, textSize, 30, 20);
     RectButton button2 = new RectButton("2", 550, buttonY, textSize, 30, 20);
     RectButton button3 = new RectButton("3", 650, buttonY, textSize, 30, 20);
@@ -21,6 +22,13 @@ class MainModel11_4 {
     ArrayList<RectButton> res = new ArrayList<RectButton>();
     ArrayList<RectButton> listRes = new ArrayList<RectButton>();
     
+
+    int end() {
+        if (checkSol == 1) return 1;
+        if (listRes.size() == 6) return 2;
+        return 0;
+    }
+
     void reset() {
         res = new ArrayList<RectButton>();
         kt1 = kt2 = kt3 = false;
@@ -95,6 +103,7 @@ class MainModel11_4 {
         }
 
         if (buttonSolution.clicked()) {
+            checkSol = 1;
             solution();
         }
 
@@ -122,6 +131,12 @@ class Question11_4 extends Question {
     void mousePressed() {
         super.mousePressed();
         model.mousePressed();
+        int flaf = model.end();
+        if (flaf == 2) finish(true);
     }
 
+    void reset() {
+        super.reset();
+        model = new MainModel11_4();
+    }
 }
