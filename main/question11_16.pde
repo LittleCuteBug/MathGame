@@ -128,7 +128,7 @@ class MainModel11_16 {
     ControlButton button_1 = new ControlButton("1 $", 350, 575, 20);
     ControlButton button_2 = new ControlButton("2 $", 500, 575, 20);
     ControlButton button_5 = new ControlButton("5 $", 650, 575, 20);
-    ControlButton button_reset = new ControlButton("Reset", 800, 575, 20);
+    ControlButton button_reset = new ControlButton("Đi lại", 800, 575, 20);
     // ControlButton button_solution = new ControlButton("đáp án", 1280, 100, 20);
 
     void setup() {
@@ -191,17 +191,17 @@ class MainModel11_16 {
         // button_solution.draw();
     }
     void mousePressed() {
-        if(button_1.clicked()){
+        if(button_1.clicked() && FINISHED==false){
                  gameState.get(currentLine).increase(1);
         }
-        if(button_2.clicked()){
+        if(button_2.clicked() && FINISHED==false){
                   gameState.get(currentLine).increase(2);
                  
         }
-        if(button_5.clicked()){
+        if(button_5.clicked() && FINISHED==false){
                   gameState.get(currentLine).increase(5);
         }
-        if(button_reset.clicked()) {
+        if(button_reset.clicked() && FINISHED==false) {
                  gameState.get(currentLine).reset();
         }
         if(gameState.get(currentLine).currentTotal==TOTAL){
@@ -217,6 +217,13 @@ class MainModel11_16 {
                     FINISHED = true;  
                   }
         }
+    }
+    void reset(){
+        FINISHED = false ; 
+        gameState.clear();
+        ANSWER.clear();
+        currentLine = 0;
+        setup();
     }
 }
 
@@ -238,5 +245,12 @@ class Question11_16 extends Question {
   void mousePressed() {
     super.mousePressed();
     model.mousePressed();
+    if(model.FINISHED==true){
+      finish(true);
+    }
+  }
+  void reset(){
+    super.reset() ; 
+    model.reset() ;
   }
 }
