@@ -119,6 +119,7 @@ class AnswerChoicesButton {
     y = _y;
     b_text = _text;
     b_text_size = _text_size;
+
     b_width = _width;
     b_height = _height;
     is_correct_answer = is_correct;
@@ -151,7 +152,7 @@ class AnswerChoicesButton {
   boolean clicked() {
     if(is_answered)
       return false;
-    if(mousePressed && (mouseButton == LEFT)) {
+      if(mousePressed && (mouseButton == LEFT)) {
       return moveOver();
     }
     return false;
@@ -161,6 +162,91 @@ class AnswerChoicesButton {
     if( mouseX >= x && mouseX <= x+b_width &&
     mouseY >= y && mouseY <= y+b_height )
       return true;
+    return false;
+  }
+}
+
+class Pair {
+  float x, y;
+  Pair (float _x, float _y) {
+    x = _x;
+    y = _y;
+  }
+}
+
+
+class ChooseButton {
+  color BUTTON_COLOR_DEFAULT = #0373fc;
+  color BUTTON_COLOR_OVER = #0053b8;
+  color BUTTON_COLOR_CHOOSE = #c5d86d;
+  color BUTTON_COLOR_CHOOSE_OVER = #909e4f;
+  color BUTTON_TEXT_COLOR = #ffffff;
+  float BUTTON_RADIO = 20;
+  float x, y, b_text_size, b_margin_width, b_margin_height;
+  float b_width, b_height;
+  boolean is_chose = false;
+  boolean is_static = false;
+  String b_text;
+  
+  ChooseButton (String _text, float _x, float _y) {
+    this(_text, _x, _y, 15.0, 10.0, 10.0);
+  }
+  
+  ChooseButton (String _text, float _x, float _y, float _text_size) {
+    this(_text, _x, _y, _text_size, _text_size*0.6, _text_size*0.5);
+  }
+
+  ChooseButton (String _text, float _x, float _y, float _text_size, boolean _static) {
+    this(_text, _x, _y, _text_size, _text_size*0.6, _text_size*0.5);
+    is_static = _static;
+  }
+  
+  ChooseButton (String _text, float _x, float _y, float _text_size, float _margin_width, float _margin_height) {
+    x = _x;
+    y = _y;
+    b_text = _text;
+    b_text_size = _text_size;
+    b_margin_width = _margin_width;
+    b_margin_height = _margin_height;
+  }
+  
+  void draw() {
+    textSize(b_text_size);
+    textAlign(CENTER); 
+    float text_width = textWidth(b_text);
+    float rect_x = x - text_width/2 - b_margin_width;
+    float rect_y = y - textAscent() - b_margin_height;
+    
+    b_width = text_width + b_margin_width*2;
+    b_height = textAscent() + textDescent() + b_margin_height*2;
+    stroke(0,0,0,0);
+    if(moveOver() && !is_static)
+      if(is_chose)
+        fill(BUTTON_COLOR_CHOOSE_OVER);
+      else  
+        fill(BUTTON_COLOR_OVER);
+    else
+      if(is_chose)
+        fill(BUTTON_COLOR_CHOOSE);
+      else 
+        fill(BUTTON_COLOR_DEFAULT);
+    rect(rect_x, rect_y, b_width, b_height, BUTTON_RADIO);
+    
+    fill(BUTTON_TEXT_COLOR);    
+    text(b_text, x, y);
+    
+  }
+
+  boolean clicked() {
+    if(mousePressed && (mouseButton == LEFT)) {
+      return moveOver();
+    }
+    return false;
+  }
+  
+  boolean moveOver() {
+    if( abs(mouseX - x) <= b_width/2 && abs(mouseY - y) <= b_height/2 )
+          return true;
     return false;
   }
 }
