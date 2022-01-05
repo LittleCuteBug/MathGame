@@ -49,21 +49,15 @@ class MainModel11_14 {
     ControlButton button_1 = new ControlButton("100", 350, 640, 20);
     ControlButton button_2 = new ControlButton("20", 500, 640, 20);
     ControlButton button_5 = new ControlButton("50", 650, 640, 20);
-    ControlButton button_reset = new ControlButton("Reset", 800, 640, 20);
+    ControlButton button_reset = new ControlButton("Đi lại", 800, 640, 20);
     // ControlButton button_solution = new ControlButton("đáp án", 1280, 100, 20);
 
     void setup() {
-              robot.setup();
-
-            gameState.add(new gameState_11_14());
+        robot.setup();
+        gameState.add(new gameState_11_14());
     }
 
     void draw(){
-
-        if(FINISHED){
-          textSize(56);
-          text("CONGRATS", 850, y_start+50);
-        }
         robot.draw();
         noFill();
         stroke(0);
@@ -128,8 +122,14 @@ class MainModel11_14 {
                        currentLine += 1 ; 
                       gameState.add(new gameState_11_14());
                   }
-
         }
+    }
+    void reset(){
+        FINISHED = false ; 
+        gameState.clear();
+        ANSWER.clear();
+        currentLine = 0;
+        gameState.add(new gameState_11_14());
     }
 }
 
@@ -140,7 +140,6 @@ class Question11_14 extends Question {
     String quizText = "Wilfred có 3 con tem với  giá là 20 xu , 50 xu và 100 xu. Em tạo ra các mức bưu phí khác nhau từ 3 con tem trên ?";
     quiz = new QuizText(quizText);
     model.setup();
-
   }
   
   void draw() {
@@ -151,5 +150,14 @@ class Question11_14 extends Question {
   void mousePressed() {
     super.mousePressed();
     model.mousePressed();
+    if(model.FINISHED==true){
+        finish(true);
+      }
   }
+
+  void reset(){
+    super.reset();
+    model.reset();
+  }
+
 }
