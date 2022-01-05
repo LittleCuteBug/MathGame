@@ -208,16 +208,16 @@ class MainModel12_17 {
     
     void setup() {
         int imgSize = 100;
-        PImage img = loadImage("../data/img/menuBG.jpg");
+
         // object 1
         ModelObject hotel1 = new ModelObject(0, 120);
         hotel1.setPosition(x, y);
-        hotel1.setImage(img, imgSize);
+        hotel1.setImage(loadImage("../data/img/hotel1.png"), imgSize);
         
         // object 2
         ModelObject hotel2 = new ModelObject(1, 98);
         hotel2.setPosition(x, y + distance);
-        hotel2.setImage(img, imgSize);
+        hotel2.setImage(loadImage("../data/img/hotel2.png"), imgSize);
         
         //push in array
         listObj.add(hotel1);
@@ -362,7 +362,7 @@ class Question12_17 extends Question {
     MainModel12_17 model = new MainModel12_17();
     void setup() {
         super.setup();
-        String quizText = "12_17";
+        String quizText = "Nhà hát 1 có 120 khách quen. Nhà hát 2 có 98 khách quen. Hỏi cần chuyển bao nhiêu khách quen từ nhà hát 1 sang nhà hát 2 để hai nhà hát có số khách quen như nhau?";
         quiz = new QuizText(quizText);
         model.setup();
     }
