@@ -98,3 +98,69 @@ class QuizText extends Paragraph {
     super.draw();
   }
 }
+
+class AnswerChoicesButton {
+  color BUTTON_COLOR_DEFAULT = #0373fc;
+  color BUTTON_COLOR_OVER = #0053b8;
+  color BUTTON_TEXT_COLOR = #ffffff;
+  color BUTTON_COLOR_CORRECT = #c5d86d;
+  color BUTTON_COLOR_WRONG = #d7263d;
+  
+  float BUTTON_RADIO = 20;
+  float x, y, b_text_size;
+  float b_width, b_height;
+  
+  String b_text;
+  boolean is_answered = false;
+  boolean is_correct_answer;
+  
+  AnswerChoicesButton (String _text, boolean is_correct, float _x, float _y, float _text_size, float _width, float _height) {
+    x = _x;
+    y = _y;
+    b_text = _text;
+    b_text_size = _text_size;
+    b_width = _width;
+    b_height = _height;
+    is_correct_answer = is_correct;
+  }
+  
+  void draw() {
+    float rect_x = x - b_width/2;
+    float rect_y = y - b_height/2;
+    
+    stroke(0,0,0,0);
+    if(is_answered) {
+      if(is_correct_answer)
+        fill(BUTTON_COLOR_CORRECT);
+      else
+        fill(BUTTON_COLOR_WRONG);
+    } else {
+      if(moveOver())
+        fill(BUTTON_COLOR_OVER);
+      else
+        fill(BUTTON_COLOR_DEFAULT);
+    }
+    rect(x, y, b_width, b_height, BUTTON_RADIO);
+    
+    textSize(b_text_size);
+    textAlign(CENTER, CENTER);
+    fill(BUTTON_TEXT_COLOR);    
+    text(b_text, x, y, b_width, b_height);
+  }
+  
+  boolean clicked() {
+    if(is_answered)
+      return false;
+    if(mousePressed && (mouseButton == LEFT)) {
+      return moveOver();
+    }
+    return false;
+  }
+  
+  boolean moveOver() {
+    if( mouseX >= x && mouseX <= x+b_width &&
+    mouseY >= y && mouseY <= y+b_height )
+      return true;
+    return false;
+  }
+}
