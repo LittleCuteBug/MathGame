@@ -84,6 +84,16 @@ void mousePressed() {
   }
 }
 
+void mouseDragged() {
+  if(currentPage.length() >= 5 && currentPage.substring(0,5).equals("Quiz "))
+      question.get(currentPage).mouseDragged();
+}
+
+void mouseReleased() {
+   if(currentPage.length() >= 5 && currentPage.substring(0,5).equals("Quiz "))
+      question.get(currentPage).mouseReleased();
+}
+
 void keyPressed() {
   if(currentPage.length() >= 5 && currentPage.substring(0,5).equals("Quiz "))
       question.get(currentPage).keyPressed();

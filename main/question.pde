@@ -66,6 +66,14 @@ class Question {
 
   }
 
+  void mouseDragged() {
+
+  }
+
+  void mouseReleased() {
+    
+  }
+
   void keyPressed() {
 
   }
