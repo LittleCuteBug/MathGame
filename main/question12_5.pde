@@ -1,18 +1,18 @@
 class Question12_5 extends Question {
   String answer[] = new String[3];
   int state = 0;
-  int big = 60;
-  int small = 40;
+  int big = 10;
+  int small = 6;
+  int third = 8;
   int pos = 1366;
-  int curSum = big + small;
+  int curSum = big + small + third;
   int rate = 0;
   int curColor = 0;
-  
   
   int posXBox = 300;
   int bigBoxLength = 500;
   int smallBoxLength = 350;
-  int boxHeight = 50;
+  int boxHeight = 40;
   int posYAnswerBox = 500;
   int posYAnswerBoxTitle = 490;
   int posYAnswerBoxText = 535;
@@ -30,7 +30,7 @@ class Question12_5 extends Question {
     super.draw();
     
 
-    textSize(32);
+    textSize(25);
     fill(50);
     stroke(0);
     if (state == 0) {
@@ -44,56 +44,120 @@ class Question12_5 extends Question {
     }
     fill(180);
     rect(500,posYAnswerBox,150,50); /// answerS box 
+	stroke(0);
+	
+	if (state == 2) {
+		stroke(255, 0, 0); 
+	}
+	rect(400,posYAnswerBox + 100,150,50); /// answer3 box 
     stroke(0);
-    fill(255, 198, 8);
+    
+	fill(255, 198, 8);
     rect(800,posYAnswerBox,150,50); /// submit box 
     fill(0, 255, 0);
     rect(1000,posYAnswerBox,200,50); /// sol box 
     
     
     fill(0);
-    text("Số lớn là", 300, posYAnswerBoxTitle);
+    text("Số thứ nhất là", 300, posYAnswerBoxTitle);
     text(answer[0], 305, posYAnswerBoxText);
-    text("Số bé là", 500, posYAnswerBoxTitle);
+    text("Số thứ hai là", 500, posYAnswerBoxTitle);
     text(answer[1], 505, posYAnswerBoxText);
-    text("Trả lời", 830, posYAnswerBoxText);
+    text("Trả lời", 840, posYAnswerBoxText);
+	text("Số thứ ba là", 400, posYAnswerBoxTitle + 100);
+	text(answer[2], 405,  posYAnswerBoxText + 100);
     fill(0);
-    text("Hướng dẫn", 1030, posYAnswerBoxText);
+    text("Hướng dẫn", 1040, posYAnswerBoxText);
     
     
     fill(0, 0, 255);
-    rect(posXBox,225,bigBoxLength,boxHeight); /// Bignumber box
-    rect(posXBox,300,smallBoxLength,boxHeight); /// Smallnumber box
+    rect(posXBox,200,smallBoxLength,boxHeight); /// Bignumber box
+    rect(posXBox,250,smallBoxLength,boxHeight); /// Smallnumber box
+    rect(posXBox,300,smallBoxLength,boxHeight); /// Thirdnumber box
+	
     fill(255, 0, 0);
-    rect(posXBox + smallBoxLength,225,bigBoxLength - smallBoxLength,boxHeight); /// Different box
+    rect(posXBox + smallBoxLength,200,bigBoxLength - smallBoxLength,boxHeight); /// Different1 box
+	fill(255, 2, 0);
+    rect(posXBox + smallBoxLength,300,(bigBoxLength - smallBoxLength) / 2,boxHeight); /// Different3 box
+	
+	
+	fill(0);
+	text(big - small, posXBox + smallBoxLength + 70,230);
+	text(third - small, posXBox + smallBoxLength + 30,330);
+	
+	
+	stroke(curColor);
+	fill(255, curColor, curColor);
+    rect(posXBox + smallBoxLength,200,bigBoxLength - smallBoxLength,boxHeight); /// Different1 box
+	fill(255, 255, curColor);
+    rect(posXBox + smallBoxLength,300,(bigBoxLength - smallBoxLength) / 2,boxHeight); /// Different3 box
+	
+	
+	fill(curColor);
+	text(big - small, posXBox + smallBoxLength + 70,230);
+	text(third - small, posXBox + smallBoxLength + 30,330);
+	
+	
+	fill(0, 0, 255);
+	stroke(0);
+    rect(posXBox,200,smallBoxLength,boxHeight); /// Bignumber box
+    rect(posXBox,250,smallBoxLength,boxHeight); /// Smallnumber box
+    rect(posXBox,300,smallBoxLength,boxHeight); /// Thirdnumber box
+	
+	
     if (sol) {
       curColor += rate;
       curColor = min(curColor, 255);
-      fill(curColor, 0, 0);
-      rect(posXBox + smallBoxLength,300,bigBoxLength - smallBoxLength,boxHeight);
+      
       fill(255 - curColor);
-      text(big, posXBox + bigBoxLength + 20,225 + 35); /// Bignumber box
-      text(big, posXBox + bigBoxLength + 20,300 + 35); /// Smallnumber box
-      text("Số lớn là: (" + str(big + small) + " + " + str(big - small) + ")" + " / 2 = " + str(big) + ". " + "Số bé là: " + str(big) + " - " + str(big - small) + " = " + str(small) + ".", 180, 420);
+	  
+      text(small, posXBox + smallBoxLength + 20,300 - 70); /// Smallnumber box
+      text(small, posXBox + smallBoxLength + 20,300 - 20); /// Smallnumber box
+      text(small, posXBox + smallBoxLength + 20,300 + 30); /// Smallnumber box
+	  
+      text("Số thứ hai là: ("
+			+ (big + small + third)
+			+ " - " 
+			+ (big - small)
+			+ " - " 
+			+ (third - small)
+			+ ") / 3 = "
+			+ small 
+			+ ". Số thứ nhất là: "
+			+ small
+			+ " + "
+			+ (big - small) 
+			+ " = "
+			+ big 
+			+ ". "
+			+ "Số thứ ba là: "
+			+ small
+			+ " + "
+			+ (third - small) 
+			+ " = "
+			+ third 
+			+ ". "
+	  , 180, 420);
     }
     if (curColor == 255) {
-      curSum = big * 2;
+      curSum = small * 3;
     }
     fill(50);
     
+	
     
-    textSize(150);
-    text("}", 1000, 320);
+    textSize(170);
+    text("}", 990, 310);
  
-    textSize(40);
-    fill(0);
-    text("Số lớn", 180, 270);
-    if (!sol) {
-      text("Số bé", 180, 345);
-    }
-    //text("Số bé", 180, 345);
-    text(big - small, posXBox + smallBoxLength + 50, 262);
-    text(curSum, 1050, 290);
+    textSize(30);
+    fill(curColor);
+    text("Số thứ nhất", 150, 230);
+	text("Số thứ ba", 150, 330);
+	fill(0);
+    text("Số thứ hai", 150, 280);
+	
+	textSize(35);
+    text(curSum, 1060, 275);
   }
   
   void mousePressed() {
@@ -104,8 +168,14 @@ class Question12_5 extends Question {
     if (mouseX >= 500 && mouseX <= 650 && mouseY >= posYAnswerBox && mouseY <= posYAnswerBox + 50) {
       state = 1;
     }
+	//rect(400,posYAnswerBox + 100,150,50); /// answer3 box 
+	if (mouseX >= 400 && mouseX <= 650 && mouseY >= posYAnswerBox + 100 && mouseY <= posYAnswerBox + 150) {
+		state = 2;
+	}
     if (mouseX >= 800 && mouseX <= 950 && mouseY >= posYAnswerBox && mouseY <= posYAnswerBox + 50) {
-      if (answer[0].length() > 0 && answer[1].length() > 0 && Integer.valueOf(answer[0]) == big && Integer.valueOf(answer[1]) == small) {
+      if (answer[0].length() > 0 && answer[1].length() > 0 && Integer.valueOf(answer[0]) == big && Integer.valueOf(answer[1]) == small
+			&& answer[2].length() > 0 && Integer.valueOf(answer[2]) == third
+			) {
 		 finish(true);
       } else {
 		 finish(false);
@@ -128,7 +198,7 @@ class Question12_5 extends Question {
     }
   }
   void reset() {
-    answer[0] = answer[1] = "";
+    answer[0] = answer[1] = answer[2] = "";
     sol = false;
     curSum = 110;
     rate = 0;
