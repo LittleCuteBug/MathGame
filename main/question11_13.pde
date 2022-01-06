@@ -422,7 +422,10 @@ class MainModel11_13 {
             init();
             listAnswer.clear();
         }
-        
+    }
+
+    boolean isFinish() {
+        return listAnswer.size() == solution.length;
     }
 }
 
@@ -438,6 +441,9 @@ class Question11_13 extends Question {
     void draw() {
         super.draw();
         model.draw();
+        if(model.isFinish()) {
+            super.finish(true);
+        }
     }
     
     void mousePressed() {
