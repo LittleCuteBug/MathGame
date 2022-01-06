@@ -1,6 +1,6 @@
 class Question12_8 extends Question {
   String answer[] = new String[2];
-  String res = "";
+  
   int state = 0;
   int big = 110;
   int small = 90;
@@ -58,12 +58,7 @@ class Question12_8 extends Question {
     text("Số bé là", 500, posYAnswerBoxTitle);
     text(answer[1], 505, posYAnswerBoxText);
     text("Trả lời", 830, posYAnswerBoxText);
-    if (res == "Câu trả lời chưa chính xác!") {
-      fill(255, 0, 0);
-    } else if (res == "Bạn làm đúng rồi đó!") {
-      fill(0, 255, 0);
-    }
-    text(res, 610, 600);
+    
     fill(0);
     text("Hướng dẫn", 1030, posYAnswerBoxText);
     
@@ -113,9 +108,12 @@ class Question12_8 extends Question {
     }
     if (mouseX >= 800 && mouseX <= 950 && mouseY >= posYAnswerBox && mouseY <= posYAnswerBox + 50) {
       if (answer[0].length() > 0 && answer[1].length() > 0 && Integer.valueOf(answer[0]) == big && Integer.valueOf(answer[1]) == small) {
-          res = "Bạn làm đúng rồi đó!";
+       
+		  finish(true);
+		  
       } else {
-         res = "Câu trả lời chưa chính xác!";
+         
+		 finish(false);
       }
     }
     if (mouseX >= 1000 && mouseX <= 1200 && mouseY >= posYAnswerBox && mouseY <= posYAnswerBox + 50) {
@@ -136,10 +134,11 @@ class Question12_8 extends Question {
   }
   void reset() {
     answer[0] = answer[1] = "";
-    res = "";
+    
     sol = false;
     curSum = 110;
     rate = 0;
     curColor = 0;
+	super.reset();
   }
 }
