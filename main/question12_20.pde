@@ -378,7 +378,7 @@ class Question12_20 extends Question {
     MainModel12_20 model = new MainModel12_20();
     void setup() {
         super.setup();
-        String quizText = "Các tuyến xe buýt A, B, C của trường học lần lượt chở được 42, 34, 14 học sinh. Hỏi giáo viên phải điều chỉnh thế nào để số học sinh trên mỗi xe buýt là như nhau?";
+        String quizText = "Ba chiếc rổ A, B, C lần lượt đựng 25, 33, 23 quả cam. Hỏi em có thể sắp xếp lại như thế nào để số cam trong mỗi rổ là như nhau?";
         quiz = new QuizText(quizText);
         model.setup();
     }
