@@ -400,6 +400,7 @@ class MainModel11_1 {
             init();
             listAnswer.clear();
         }
+        button_solution_clicked = false;
     }
     
     boolean isFinish() {
