@@ -40,7 +40,7 @@ class ModelObject {
         draw();
         image(pointer, x_img - 3 * imgSize / 4, y_img + imgSize / 4, imgSize / 2, imgSize / 2);
     }
-
+    
     void drawDiff() {
         fill(0);
         textAlign(CENTER);
@@ -52,7 +52,7 @@ class ModelObject {
         }
         textSize(12);
     }
-
+    
     void draw() {
         //draw object
         x_end = x_start + (remain - hide - await) * segment;
@@ -110,7 +110,7 @@ class ModelObject {
         }
         return false;
     }
-
+    
     void reset() {
         remain -= diff;
         diff = 0;
@@ -208,7 +208,7 @@ class MainModel12_17 {
     
     void setup() {
         int imgSize = 100;
-
+        
         // object 1
         ModelObject hotel1 = new ModelObject(0, 120);
         hotel1.setPosition(x, y);
@@ -268,7 +268,7 @@ class MainModel12_17 {
             obj.draw();
             // if(!state.equals("depart")) {
             //     obj.drawDiff();
-            // }
+        // }
         }
     }
     
@@ -357,6 +357,16 @@ class MainModel12_17 {
             await = 0;
         }
     }
+    
+    boolean isFinish() {
+        boolean res = true;
+        for(ModelObject obj : listObj) {
+            if(obj.remain != listObj.get(0).remain) {
+                res = false;
+            }
+        }
+        return res;
+    }
 }
 class Question12_17 extends Question {
     MainModel12_17 model = new MainModel12_17();
@@ -370,6 +380,9 @@ class Question12_17 extends Question {
     void draw() {
         super.draw();
         model.draw();
+        if(model.isFinish()) {
+            super.finish(true);
+        }
     }
     
     void mousePressed() {
