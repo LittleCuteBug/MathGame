@@ -22,6 +22,7 @@ class Question {
     draw();
     if(isFinish) {
       fill(0,230);
+      noStroke();
       rect(0,0,1366,768);
       if(isCorrect) {
         image(congratIMG, 0, 0); 
