@@ -9,6 +9,7 @@ class MainModel11_9 {
     int buttonX2 = 500;
     int buttonX3 = 700;
     int buttonSubmitX = 900;
+    int checkSol = 0;
 
     int disAnsX = 90;
     int ansX = 1100;
@@ -24,7 +25,7 @@ class MainModel11_9 {
       {new RectButton("       Mẹ       ", buttonX1, buttonY, textSize), new RectButton("Jonathan", buttonX1, buttonY, textSize), new RectButton("       Bố       ", buttonX1, buttonY, textSize) },
       {new RectButton("       Mẹ       ", buttonX2, buttonY, textSize), new RectButton("Jonathan", buttonX2, buttonY, textSize), new RectButton("       Bố       ", buttonX2, buttonY, textSize) },
       {new RectButton("       Mẹ       ", buttonX3, buttonY, textSize), new RectButton("Jonathan", buttonX3, buttonY, textSize), new RectButton("       Bố       ", buttonX3, buttonY, textSize) }
-    };
+    };  
     
     
     RectButton button1, button2, button3;
@@ -34,6 +35,12 @@ class MainModel11_9 {
     HashMap<Integer, Boolean> hm = new HashMap<Integer, Boolean>();
     //ArrayList<RectButton> listRes = new ArrayList<RectButton>();
     ArrayList<RectButton[]> listRes = new ArrayList<RectButton[]>();
+
+    int end() {
+        if (checkSol == 1) return 1;
+        if (listRes.size() == 6) return 2;
+        return 0;
+    }
 
     void add(int x1, int x2, int x3) {
         int x = (x1 + 1) * 100 + (x2 + 1) * 10 + x3;
@@ -62,7 +69,7 @@ class MainModel11_9 {
     
 
     void setup() {
-        button1 = button[0][id1];
+        button1 = button[0][id1];   
         button2 = button[1][id2];
         button3 = button[2][id3];
         button1.draw();
@@ -100,6 +107,7 @@ class MainModel11_9 {
         }
 
         if (buttonSolution.clicked()) {
+            checkSol = 1;
             solution();
         }
 
@@ -128,6 +136,13 @@ class Question11_9 extends Question {
     void mousePressed() {
         super.mousePressed();
         model.mousePressed();
+        int flaf = model.end();
+        if (flaf == 2) finish(true);
+    }
+
+    void reset() {
+        super.reset();
+        model = new MainModel11_9();
     }
 
 }
