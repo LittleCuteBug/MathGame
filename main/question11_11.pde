@@ -5,10 +5,10 @@ class MainModel11_11 {
     int id1 = 0, id2 = 0;
     int checkSol = 0;
 
-    int buttonX = 400;
-    int buttonY = 210;
+    int buttonX = 370;
+    int buttonY = 300;
     int disButtonY = 100;
-    int disButtonX = 400;
+    int disButtonX = 500;
     int textSize = 30;
 
     int disAnsX = 90;
@@ -16,21 +16,25 @@ class MainModel11_11 {
     int ansY = 170;
     int ansTextSize = 15;
 
-    RectButton button1 = new RectButton("1. Thú cưng nhà hàng xóm", buttonX, buttonY + 0 * disButtonY, textSize);
-    RectButton button2 = new RectButton("2. Tommy và Jeffrey            ", buttonX + disButtonX, buttonY + 0 * disButtonY, textSize);
-    RectButton button3 = new RectButton("3. Chú mèo tuyệt diệu        ", buttonX, buttonY + 1 * disButtonY, textSize);   
-    RectButton button4 = new RectButton("4. Nhiệm vụ hoàn thành     ", buttonX + disButtonX, buttonY + 1 * disButtonY, textSize);
+    String[] mp = {" ", 
+    "1. Thú cưng nhà hàng xóm", 
+    "2. Tommy và Jeffrey             ", 
+    "3. Chú mèo tuyệt diệu         ", 
+    "4. Nhiệm vụ hoàn thành     "};
 
-    RectButton buttonSubmit = new RectButton("submit", 280, buttonY + 2 * disButtonY, textSize);
-    RectButton buttonClear = new RectButton("clear", 280 + 200, buttonY + 2 * disButtonY, textSize);
+    ChooseButton button1 = new ChooseButton(mp[1], buttonX, buttonY + 0 * disButtonY, textSize * 1.3);
+    ChooseButton button2 = new ChooseButton(mp[2], buttonX + disButtonX, buttonY + 0 * disButtonY, textSize * 1.3);
+    ChooseButton button3 = new ChooseButton(mp[3], buttonX, buttonY + 1 * disButtonY, textSize * 1.3);   
+    ChooseButton button4 = new ChooseButton(mp[4], buttonX + disButtonX, buttonY + 1 * disButtonY, textSize * 1.3);
+
+    RectButton buttonSubmit = new RectButton("submit", 470, buttonY + 2.7 * disButtonY, textSize * 1.5);
+    RectButton buttonClear = new RectButton("clear", 700, buttonY + 2.7 * disButtonY, textSize * 1.5);
 
     RectButton buttonSolution = new RectButton("solution", 1280, 100, textSize);
     
     HashMap<Integer, Boolean> hm = new HashMap<Integer, Boolean>();
-    String[] mp = {" ", "1. Thú cưng nhà hàng xóm", "2. Tommy và Jeffrey            ", "3. Chú mèo tuyệt diệu        ", "4. Nhiệm vụ hoàn thành     "};
-
-    ArrayList<RectButton> res = new ArrayList<RectButton>();
-    ArrayList<RectButton[]> listRes = new ArrayList<RectButton[]>();
+    
+    ArrayList<ChooseButton[]> listRes = new ArrayList<ChooseButton[]>();
 
     int end() {
         if (checkSol == 1) return 1;
@@ -44,13 +48,12 @@ class MainModel11_11 {
             x1 = x2;
             x2 = tmp;
         }
-        println("x1: "+ x1);
-        println("x2: "+ x2);
         int x = (x1 + 1) * 100 + (x2 + 1) * 10;
         int sz = listRes.size();
         if (hm.get(x) == null) {
             hm.put(x, true);
-            RectButton[] tmp = {new RectButton(mp[x1], ansX , ansY + sz * rSize, ansTextSize), new RectButton(mp[x2], ansX, ansY + 40 + sz * rSize, ansTextSize)};
+            ChooseButton[] tmp = {new ChooseButton(mp[x1], ansX , ansY + sz * rSize, ansTextSize, true), 
+            new ChooseButton(mp[x2], ansX, ansY + 40 + sz * rSize, ansTextSize, true)};
             listRes.add(tmp);
         }
     }
@@ -71,21 +74,26 @@ class MainModel11_11 {
 
     void clear() {
         id1 = id2 = 0;
-        kt1 = kt2 = kt3 = kt4 = false;
-        res.clear();
+        button1.is_chose = button2.is_chose = button3.is_chose = button4.is_chose = false;
     }
 
     void addRes(int x) {
-        int sz = 0;
-        
         if (id1 == 0) {
           id1 = x;
         }
         else  {
           id2 = x;
-          sz = 1;
         }
-        res.add(new RectButton(mp[x], buttonX  + disButtonX * sz, disButtonY + 4 * disButtonY + 40, textSize));
+    }
+
+    void rmRes(int x) {
+        if (id1 == x) {
+          id1 = id2;
+          id2 = 0;
+        }
+        else  {
+          id2 = 0;
+        }
     }
 
     void setup() {
@@ -100,36 +108,58 @@ class MainModel11_11 {
     }
 
     void draw() {
-                
-        for (RectButton button : res) {
-            button.draw();
-        }
-        for (RectButton button[]: listRes) {
+        for (ChooseButton button[]: listRes) {
             button[0].draw();
             button[1].draw();
         }
     }
     
     void mousePressed() {
-        int sz = res.size();
-        
-        if (button1.clicked() && kt1 == false && id2 == 0) {
-            addRes(1);
-            kt1 = true;
+        if (button1.clicked()) {
+          if(button1.is_chose) {
+            rmRes(1);
+            button1.is_chose = false;
+          } else {
+            if(id2 == 0) {
+              addRes(1);
+              button1.is_chose = true;
+            }
+          }
         }
 
-        if (button2.clicked() && kt2 == false && id2 == 0) {;
-            addRes(2);
-            kt2 = true;
+        if (button2.clicked()) {
+          if(button2.is_chose) {
+            rmRes(2);
+            button2.is_chose = false;
+          } else {
+            if(id2 == 0) {
+              addRes(2);
+              button2.is_chose = true;
+            }
+          }
         }
 
-        if (button3.clicked() && kt3 == false && id2 == 0) {
-            addRes(3);
-            kt3 = true;
+        if (button3.clicked()) {
+          if(button3.is_chose) {
+            rmRes(3);
+            button3.is_chose = false;
+          } else {
+            if(id2 == 0) {
+              addRes(3);
+              button3.is_chose = true;
+            }
+          }
         }
-        if (button4.clicked() && kt4 == false && id2 == 0) {
-            addRes(4);
-            kt4 = true;
+        if (button4.clicked()) {
+          if(button4.is_chose) {
+            rmRes(4);
+            button4.is_chose = false;
+          } else {
+            if(id2 == 0) {
+              addRes(4);
+              button4.is_chose = true;
+            }
+          }
         }        
 
         if (buttonClear.clicked()) {
