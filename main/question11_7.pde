@@ -363,7 +363,7 @@ class MainModel11_7 {
         if(listAnswer.size() == solution.length) {
             fill(231, 76, 60);
             textSize(50.0);
-            text("CONGRATULATION!!!", 1000, 550, 50);
+            text("CONGRATULATION!!!", 1000, 550);
             textSize(12.0);
         }
         
@@ -441,6 +441,10 @@ class MainModel11_7 {
             listAnswer.clear();
         }
     }
+
+    boolean isFinish() {
+        return listAnswer.size() == solution.length;
+    }
 }
 
 class Question11_7 extends Question { 
@@ -455,6 +459,9 @@ class Question11_7 extends Question {
     void draw() {
         super.draw();
         model.draw();
+        if(model.isFinish()) {
+            super.finish(true);
+        }
     }
     
     void mousePressed() {
