@@ -3,7 +3,7 @@ class Question12_3 extends Question {
   String res = "";
   int state = 0;
   int big = 45;
-  int small = 35;
+  int small = 15;
   int pos = 1366;
   int curSum = big + small;
   int rate = 0;
@@ -11,8 +11,8 @@ class Question12_3 extends Question {
   
   
   int posXBox = 300;
-  int bigBoxLength = 500;
-  int smallBoxLength = 350;
+  int bigBoxLength = 720;
+  int smallBoxLength = bigBoxLength / 3;
   int boxHeight = 50;
   int posYAnswerBox = 500;
   int posYAnswerBoxTitle = 490;
@@ -21,7 +21,7 @@ class Question12_3 extends Question {
   boolean sol = false;
   void setup() {
     super.setup();
-    String quizText = "Câu 12_3: Melvin và Edward có 80 đô-la. Edward có nhiều hơn Melvin 10 đô-la. Hỏi mỗi bạn có bao nhiêu đô-la?";
+    String quizText = "Câu 12_3: Natalie có 15 quân bài. Số quân bài của Anne nhiều gấp 3 lần số quân bài của Natalie. Hỏi Anne có bao nhiêu quân bài?";
     quiz = new QuizText(quizText);
     answer[0] = answer[1] = "";
     strokeWeight(3);
@@ -68,20 +68,25 @@ class Question12_3 extends Question {
     text("Hướng dẫn", 1030, posYAnswerBoxText);
     
     
-    fill(0, 0, 255);
-    rect(posXBox,225,bigBoxLength,boxHeight); /// Bignumber box
-    rect(posXBox,300,smallBoxLength,boxHeight); /// Smallnumber box
     fill(255, 0, 0);
-    rect(posXBox + smallBoxLength,225,bigBoxLength - smallBoxLength,boxHeight); /// Different box
+    rect(posXBox + 0 * smallBoxLength,225,smallBoxLength,boxHeight); /// Bignumber box 1
+	fill(233, 250, 5);
+    rect(posXBox + 1 * smallBoxLength,225,smallBoxLength,boxHeight); /// Bignumber box 2
+	fill(0, 0, 255);
+    rect(posXBox + 2 * smallBoxLength,225,smallBoxLength,boxHeight); /// Bignumber box 3
+	fill(0, 255, 0);
+    rect(posXBox,300,smallBoxLength,boxHeight); /// Smallnumber box
+   // fill(255, 0, 0);
+    //rect(posXBox + smallBoxLength,225,bigBoxLength - smallBoxLength,boxHeight); /// Different box
     if (sol) {
       curColor += rate;
       curColor = min(curColor, 255);
       fill(curColor, 0, 0);
-      rect(posXBox + smallBoxLength,300,bigBoxLength - smallBoxLength,boxHeight);
+      //rect(posXBox + smallBoxLength,300,bigBoxLength - smallBoxLength,boxHeight);
       fill(255 - curColor);
-      text(big, posXBox + bigBoxLength + 20,225 + 35); /// Bignumber box
-      text(big, posXBox + bigBoxLength + 20,300 + 35); /// Smallnumber box
-      text("Số lớn là: (" + str(big + small) + " + " + str(big - small) + ")" + " / 2 = " + str(big) + ". " + "Số bé là: " + str(big) + " - " + str(big - small) + " = " + str(small) + ".", 180, 420);
+      //text(big, posXBox + bigBoxLength + 20,225 + 35); /// Bignumber box
+      //text(big, posXBox + bigBoxLength + 20,300 + 35); /// Smallnumber box
+      text("Số lớn là: " + small + " * 3 = " + big + ".", 180, 420);
     }
     if (curColor == 255) {
       curSum = big * 2;
@@ -89,18 +94,15 @@ class Question12_3 extends Question {
     fill(50);
     
     
-    textSize(150);
-    text("}", 1000, 320);
+    //textSize(150);
+    //text("}", 1000, 320);
  
     textSize(40);
     fill(0);
     text("Số lớn", 180, 270);
-    if (!sol) {
-      text("Số bé", 180, 345);
-    }
-    //text("Số bé", 180, 345);
-    text(big - small, posXBox + smallBoxLength + 50, 262);
-    text(curSum, 1050, 290);
+    text("Số bé", 180, 345);
+    text(small, posXBox + 95, 340);
+    //text(curSum, 1050, 290);
   }
   
   void mousePressed() {
