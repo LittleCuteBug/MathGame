@@ -3,6 +3,7 @@ class MainModel11_11 {
     int rSize = 95;
     boolean kt1, kt2, kt3, kt4;
     int id1 = 0, id2 = 0;
+    int checkSol = 0;
 
     int buttonX = 400;
     int buttonY = 210;
@@ -31,6 +32,11 @@ class MainModel11_11 {
     ArrayList<RectButton> res = new ArrayList<RectButton>();
     ArrayList<RectButton[]> listRes = new ArrayList<RectButton[]>();
 
+    int end() {
+        if (checkSol == 1) return 1;
+        if (listRes.size() == 6) return 2;
+        return 0;
+    }
 
     void submit(int x1, int x2) {
         if (x2 < x1){
@@ -136,6 +142,7 @@ class MainModel11_11 {
         }
 
         if (buttonSolution.clicked()) {
+            checkSol = 1;
             solution();
         }
     }
@@ -161,6 +168,8 @@ class Question11_11 extends Question {
     void mousePressed() {
         super.mousePressed();
         model.mousePressed();
+        int flaf = model.end();
+        if (flaf == 2) finish(true);
     }
 
     void reset() {
