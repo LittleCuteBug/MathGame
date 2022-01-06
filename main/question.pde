@@ -14,6 +14,7 @@ class Question {
   }
   
   void _draw() {
+    pushStyle();
     background(questionBG);
     menuButton.draw();
     resetButton.draw();
@@ -30,6 +31,7 @@ class Question {
       menuButtonFinish.draw();
       resetButtonFinish.draw();
     }
+    popStyle();
   }
 
   void reset() {
