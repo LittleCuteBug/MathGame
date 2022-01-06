@@ -390,7 +390,7 @@ class MainModel11_7 {
         
         //cross button
         if(button_cross.clicked()) {
-            if(counter <= 0 && y_cur > y_end) {
+            if(counter <= 0 && y_cur > y_end && x_cur < x_end) {
                 sequence = sequence + "C";
                 c_left = segment;
                 counter = segment + delay;
