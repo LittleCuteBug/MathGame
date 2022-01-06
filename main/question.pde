@@ -69,4 +69,7 @@ class Question {
   void keyPressed() {
 
   }
+  void keyPressed() {
+    print(key);
+  }
 }
