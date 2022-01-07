@@ -83,8 +83,8 @@ class ModelObject12_15 {
 
 class MainModel12_15 {
     int counter = 0;
-    int delay = 120;
-    int speed = 1;
+    int delay = 200;
+    int speed = 4;
     
     int x = 350;
     int y = 200;
@@ -109,7 +109,7 @@ class MainModel12_15 {
     ArrayList<RectButton> addButton = new ArrayList<RectButton>();
     ArrayList<RectButton> subButton = new ArrayList<RectButton>();
     
-    RectButton check = new RectButton("check", 600, 600);
+    RectButton check = new RectButton("kiểm tra", 588, 640, 25);
     
     void drawFloat(int temp) {
         if(temp == 0)
@@ -164,23 +164,28 @@ class MainModel12_15 {
         move = 4;
         
         // object 1
-        obj1 = new ModelObject12_15(0, 30);
+        obj1 = new ModelObject12_15(0, 30 - move);
         obj1.setPosition(x, y);
-        obj1.setImage(loadImage("../data/img/hotel1.png"), imgSize);
+        obj1.setImage(loadImage("../data/img/Sheena.png"), imgSize);
         
         // object 2
         obj2 = new ModelObject12_15(1, 5);
         obj2.setPosition(x, y + distance);
-        obj2.setImage(loadImage("../data/img/hotel2.png"), imgSize);
+        obj2.setImage(loadImage("../data/img/Anne.png"), imgSize);
         
         // buttons
-        addButton.add(new RectButton("+ 5", 400, 550, 20));
-        addButton.add(new RectButton("+ 2", 475, 550, 20));
-        addButton.add(new RectButton("+ 1", 550, 550, 20));
+        addButton.add(new RectButton("+ 5", 775, 550, 20));
+        addButton.add(new RectButton("+ 2", 700, 550, 20));
+        addButton.add(new RectButton("+ 1", 625, 550, 20));
         
-        subButton.add(new RectButton("- 1", 625, 550, 20));
-        subButton.add(new RectButton("- 2", 700, 550, 20));
-        subButton.add(new RectButton("- 5", 775, 550, 20));
+        subButton.add(new RectButton("- 1", 550, 550, 20));
+        subButton.add(new RectButton("- 2", 475, 550, 20));
+        subButton.add(new RectButton("- 5", 400, 550, 20));
+        
+        draw();
+        x_tar = x_cur = obj1.x_end;
+        y_tar = y_cur = obj1.y;
+        await = move;
     }
     
     void draw() {
@@ -203,89 +208,68 @@ class MainModel12_15 {
             button.draw();
         }
         check.draw();
+        drawFloat(await);
         
         //draw checking
         if(stage > 0) {
             switch(stage) {
                 case 1 :
-                    if(obj1.await < move) {
-                        obj1.await ++;
-                    } else {
-                        await = move;
-                        obj1.await = 0;
-                        obj1.remain -= move;
-                        obj1.draw();
-                        x_cur = obj1.x_end;
-                        y_cur = obj1.y;
-                        stage = 2;
-                    }
-                    break;	
-                case 2 :
                     x_tar = obj2.x_end;
                     y_tar = obj2.y;
-                    drawFloat(await);
                     if(x_cur == x_tar && y_cur == y_tar) {
+                        stage = 2;
+                    }
+                    break;
+                case 2 :
+                    if(await > 0) {
+                        obj2.await = await;
+                        obj2.remain += await;
+                        await = 0;
+                    } else {
                         stage = 3;
                     }
                     break;
                 case 3 :
-                    obj2.remain += await;
-                    obj2.await = await;
-                    await = 0;
-                    stage = 4;
-                    break;
-                case 4 :
                     if(obj2.await > 0) {
                         obj2.await --;
                     } else {
                         counter = delay;
-                        stage = 5;
+                        stage = 4;
+                    }
+                    break;
+                case 4 :
+                    if(obj2.remain == obj1.remain) {
+                        if(counter > 0) {
+                            break;
+                        } else {
+                            answer = true;
+                            stage = 0;
+                        }
+                    } else {
+                        if(counter > 0) {
+                            image(loadImage("../data/img/False.png"), 1050, 200, 270, 180);
+                        } else {
+                            stage = 5;
+                        }
                     }
                     break;
                 case 5 :
-                    if(counter > 0) {
-                        break;
-                    }
-                    if(obj1.remain == obj2.remain) {
-                        stage = 0;
-                        answer = true;
-                        break;
+                    if(obj2.await < move) {
+                        obj2.await ++;
                     } else {
                         stage = 6;
                     }
                     break;
                 case 6 :
-                    if(obj2.await < move) {
-                        obj2.await ++;
-                    } else {
-                        await = move;
-                        obj2.await = 0;
-                        obj2.remain -= move;
-                        obj2.draw();
-                        x_cur = obj2.x_end;
-                        y_cur = obj2.y;
-                        stage = 7;
-                    }
+                    obj2.remain -= move;
+                    obj2.await = 0;
+                    await = move;
+                    stage = 7;
                     break;
                 case 7 :
                     x_tar = obj1.x_end;
                     y_tar = obj1.y;
-                    drawFloat(await);
                     if(x_cur == x_tar && y_cur == y_tar) {
-                        stage = 8;
-                    }
-                    break;
-                case 8 :
-                    obj1.remain += await;
-                    obj1.await = await;
-                    await = 0;
-                    stage = 9;
-                    break;
-                case 9 :
-                    if(obj1.await > 0) {
-                        obj1.await --;
-                    } else {
-                        counter = delay;
                         stage = 0;
                     }
                     break;
@@ -301,6 +285,9 @@ class MainModel12_15 {
             if(button.clicked()) {
                 int t = button.b_text.charAt(button.b_text.length() - 1) - '0';
                 obj2.remain += t;
+                if(obj2.remain > obj1.remain + move) {
+                    obj2.remain = obj1.remain + move;
+                }
             }
         }
         
@@ -308,13 +295,26 @@ class MainModel12_15 {
             if(button.clicked()) {
                 int t = button.b_text.charAt(button.b_text.length() - 1) - '0';
                 obj2.remain -= t;
+                if(obj2.remain < 5) {
+                    obj2.remain = 5;
+                }
             }
         }
         
         if(check.clicked()) {
             stage = 1;
-            println(true);
         }
+    }
+
+    void reset() {
+        if(stage > 0) {
+            return;
+        }
+        obj2.remain = 5;
+    }
+
+    boolean isFinish() {
+        return answer;
     }
 }
 class Question12_15 extends Question {
@@ -329,6 +329,9 @@ class Question12_15 extends Question {
     void draw() {
         super.draw();
         model.draw();
+        if(model.isFinish()) {
+            super.finish(true);
+        }
     }
     
     void mousePressed() {
@@ -338,6 +341,6 @@ class Question12_15 extends Question {
     
     void reset() {
         super.reset();
-        //model.reset();
+        model.reset();
     }
 }
