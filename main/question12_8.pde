@@ -136,7 +136,7 @@ class Question12_8 extends Question {
     answer[0] = answer[1] = "";
     
     sol = false;
-    curSum = 110;
+    curSum = 200;
     rate = 0;
     curColor = 0;
 	super.reset();
