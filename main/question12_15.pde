@@ -313,8 +313,8 @@ class MainModel12_15 {
             if(button.clicked()) {
                 int t = button.b_text.charAt(button.b_text.length() - 1) - '0';
                 obj2.remain += t;
-                if(obj2.remain > obj1.remain + move) {
-                    obj2.remain = obj1.remain + move;
+                if(obj2.remain > obj1.remain) {
+                    obj2.remain = obj1.remain;
                 }
             }
         }
@@ -338,7 +338,8 @@ class MainModel12_15 {
         if(stage > 0) {
             return;
         }
-        obj2.remain = 5;
+        obj2.remain = 0;
+        answer = false;
     }
     
     boolean isFinish() {
