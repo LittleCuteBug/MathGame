@@ -1,8 +1,8 @@
 class Question12_10 extends Question {
-  String answer[] = new String[2];
+  String answer[] = new String[1];
   int state = 0;
-  int big = 20;
-  int small = 5;
+  int big = 80;
+  int small = 20;
   int pos = 1366;
   int curSum = big + small;
   int rate = 0;
@@ -22,7 +22,7 @@ class Question12_10 extends Question {
     super.setup();
     String quizText = "Câu 12_10: Alison có 20 đô-la. Anna có nhiều gấp 4 lần số tiền của Alison. Hỏi Anna có bao nhiêu đô-la?";
     quiz = new QuizText(quizText);
-    answer[0] = answer[1] = "";
+    answer[0] = "";
     strokeWeight(3);
   }
   
@@ -42,7 +42,7 @@ class Question12_10 extends Question {
       stroke(255, 0, 0); 
     }
     fill(180);
-    rect(500,posYAnswerBox,150,50); /// answerS box 
+    //rect(500,posYAnswerBox,150,50); /// answerS box 
     stroke(0);
     fill(255, 198, 8);
     rect(800,posYAnswerBox,150,50); /// submit box 
@@ -51,10 +51,8 @@ class Question12_10 extends Question {
     
     
     fill(0);
-    text("Số lớn là", 300, posYAnswerBoxTitle);
+    text("Anna có", 300, posYAnswerBoxTitle);
     text(answer[0], 305, posYAnswerBoxText);
-    text("Số bé là", 500, posYAnswerBoxTitle);
-    text(answer[1], 505, posYAnswerBoxText);
     text("Trả lời", 830, posYAnswerBoxText);
     fill(0);
     text("Hướng dẫn", 1030, posYAnswerBoxText);
@@ -80,7 +78,7 @@ class Question12_10 extends Question {
       fill(255 - curColor);
       //text(big, posXBox + bigBoxLength + 20,225 + 35); /// Bignumber box
       //text(big, posXBox + bigBoxLength + 20,300 + 35); /// Smallnumber box
-      text("Số lớn là: " + small + " * 4 = " + big + ".", 180, 420);
+      text("Anna có: " + small + " * 4 = " + big + ".", 180, 420);
     }
     if (curColor == 255) {
       curSum = big * 2;
@@ -93,8 +91,8 @@ class Question12_10 extends Question {
  
     textSize(40);
     fill(0);
-    text("Số lớn", 180, 270);
-    text("Số bé", 180, 345);
+    text("Anna", 180, 270);
+    text("Alison", 180, 345);
     text(small, posXBox + 75, 340);
     //text(curSum, 1050, 290);
   }
@@ -104,11 +102,8 @@ class Question12_10 extends Question {
     if (mouseX >= 300 && mouseX <= 450 && mouseY >= posYAnswerBox && mouseY <= posYAnswerBox + 50) {
       state = 0;
     }
-    if (mouseX >= 500 && mouseX <= 650 && mouseY >= posYAnswerBox && mouseY <= posYAnswerBox + 50) {
-      state = 1;
-    }
     if (mouseX >= 800 && mouseX <= 950 && mouseY >= posYAnswerBox && mouseY <= posYAnswerBox + 50) {
-      if (answer[0].length() > 0 && answer[1].length() > 0 && Integer.valueOf(answer[0]) == big && Integer.valueOf(answer[1]) == small) {
+      if (answer[0].length() > 0 && Integer.valueOf(answer[0]) == big) {
           
 		  finish(true);
       } else {
@@ -133,9 +128,8 @@ class Question12_10 extends Question {
     }
   }
   void reset() {
-    answer[0] = answer[1] = "";
+    answer[0] = "";
     sol = false;
-    curSum = 110;
     rate = 0;
     curColor = 0;
 	super.reset();
