@@ -51,9 +51,9 @@ class Question12_11 extends Question {
     
     
     fill(0);
-    text("Số lớn là", 300, posYAnswerBoxTitle);
+    text("Sherry có", 300, posYAnswerBoxTitle);
     text(answer[0], 305, posYAnswerBoxText);
-    text("Số bé là", 500, posYAnswerBoxTitle);
+    text("Lousia có", 500, posYAnswerBoxTitle);
     text(answer[1], 505, posYAnswerBoxText);
     text("Trả lời", 830, posYAnswerBoxText);
     fill(0);
@@ -79,7 +79,7 @@ class Question12_11 extends Question {
       //text(big, posXBox + bigBoxLength + 20,225 + 35); /// Bignumber box
       //text(big, posXBox + bigBoxLength + 20,300 + 35); /// Smallnumber box
 	 
-      text("Số bé là: " + (big + small) + " / (3 + 1) = " + small + ". Số lớn là: " + small + " * 3 = " + big + ".", 180, 420);
+      text("Louisa có: " + (big + small) + " / (3 + 1) = " + small + ". Sherry có: " + small + " * 3 = " + big + ".", 180, 420);
     }
     if (curColor == 255) {
       curSum = big * 2;
@@ -92,8 +92,8 @@ class Question12_11 extends Question {
  
     textSize(40);
     fill(0);
-    text("Số lớn", 180, 270);
-    text("Số bé", 180, 345);
+    text("Sherry", 180, 270);
+    text("Louisa", 180, 345);
     //text(small, posXBox + 65, 340);
     text(big + small, 1150, 290);
   }
@@ -134,7 +134,7 @@ class Question12_11 extends Question {
   void reset() {
     answer[0] = answer[1] = "";
     sol = false;
-    curSum = 110;
+    curSum = 60;
     rate = 0;
     curColor = 0;
 	super.reset();
