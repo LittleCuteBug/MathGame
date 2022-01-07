@@ -130,7 +130,7 @@ class Question12_2 extends Question {
   void reset() {
     answer[0] = answer[1] = "";
     sol = false;
-    curSum = 110;
+    curSum = 100;
     rate = 0;
     curColor = 0;
 	super.reset();
