@@ -224,6 +224,12 @@ class MainModel12_21 {
         obj1.draw();
         obj2.draw();
         
+        textSize(220);
+        text("}", 1000, 360);
+        textSize(50);
+        text(obj1.remain + obj2.remain, 1060, 310);
+        textSize(12);
+        
         //draw buttons
         for(RectButton button : addButton) {
             button.draw();
@@ -290,7 +296,7 @@ class MainModel12_21 {
                         }
                     } else {
                         if(counter > 0) {
-                            image(loadImage("../data/img/False.png"), 1050, 200, 270, 180);
+                            image(loadImage("../data/img/False.png"), 1060, 210, 240, 160);
                         } else {
                             stage = 5;
                         }
@@ -328,7 +334,7 @@ class MainModel12_21 {
                     break;
                 case 11 :
                     if(counter > 0) {
-                        image(loadImage("../data/img/False.png"), 1050, 200, 270, 180);
+                        image(loadImage("../data/img/False.png"), 1060, 210, 240, 160);
                     } else {
                         stage = 0;
                     }
