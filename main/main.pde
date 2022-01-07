@@ -1,4 +1,4 @@
-//import processing.sound.*;
+import processing.sound.*;
 
 String currentPage = "menu";
 
@@ -60,8 +60,8 @@ void setup() {
     q.setup();
   }
   
-  //SoundFile soundFile = new SoundFile(this, "../data/music/bgMusic.mp3");
-  //soundFile.loop();
+  SoundFile soundFile = new SoundFile(this, "../data/music/bgMusic.mp3");
+  soundFile.loop();
 }
 
 void draw() {
