@@ -212,12 +212,12 @@ class MainModel12_6 {
         // object 1
         ModelObject12_6 hotel1 = new ModelObject12_6(0, 26);
         hotel1.setPosition(x, y);
-        hotel1.setImage(loadImage("../data/img/hotel1.png"), imgSize);
+        hotel1.setImage(loadImage("../data/img/christmascard.jpg"), imgSize);
         
         // object 2
         ModelObject12_6 hotel2 = new ModelObject12_6(1, 14);
         hotel2.setPosition(x, y + distance);
-        hotel2.setImage(loadImage("../data/img/hotel2.png"), imgSize);
+        hotel2.setImage(loadImage("../data/img/christmascard1.jpg"), imgSize);
         
         //push in array
         listObj.add(hotel1);
