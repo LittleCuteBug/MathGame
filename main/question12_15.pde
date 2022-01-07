@@ -50,7 +50,12 @@ class ModelObject12_15 {
         fill(0);
         textAlign(CENTER);
         textSize(30);
-        text(remain - await, x_start + (x_end - x_start) / 2, y + 35);
+        if(remain > 0) {
+            text(remain - await, x_start + (x_end - x_start) / 2, y + 35);
+        } else {
+            text("?", x_start + (x_end - x_start) / 2  + 10, y + 35);
+        }
+        
         textSize(12);
         
         if(await > 0) {
@@ -164,14 +169,14 @@ class MainModel12_15 {
         move = 4;
         
         // object 1
-        obj1 = new ModelObject12_15(0, 30 - move);
+        obj1 = new ModelObject12_15(0, 30);
         obj1.setPosition(x, y);
-        obj1.setImage(loadImage("../data/img/Sheena.png"), imgSize);
+        obj1.setImage(loadImage("../data/img/Bill.png"), imgSize);
         
         // object 2
-        obj2 = new ModelObject12_15(1, 5);
+        obj2 = new ModelObject12_15(1, 0);
         obj2.setPosition(x, y + distance);
-        obj2.setImage(loadImage("../data/img/Anne.png"), imgSize);
+        obj2.setImage(loadImage("../data/img/Jack.png"), imgSize);
         
         // buttons
         addButton.add(new RectButton("+ 5", 775, 550, 20));
@@ -183,9 +188,6 @@ class MainModel12_15 {
         subButton.add(new RectButton("- 5", 400, 550, 20));
         
         draw();
-        x_tar = x_cur = obj1.x_end;
-        y_tar = y_cur = obj1.y;
-        await = move;
     }
     
     void draw() {
@@ -213,6 +215,22 @@ class MainModel12_15 {
         //draw checking
         if(stage > 0) {
             switch(stage) {
+                case 8 :
+                    if(obj1.await < move) {
+                        obj1.await ++;
+                    } else {
+                        stage = 9;
+                    }
+                    break;
+                case 9 :
+                    obj1.await = 0;
+                    obj1.remain -= move;
+                    await = move;
+                    obj1.draw();
+                    x_cur = obj1.x_end;
+                    y_cur = obj1.y;
+                    stage = 1;
+                    break;
                 case 1 :
                     x_tar = obj2.x_end;
                     y_tar = obj2.y;
@@ -270,6 +288,16 @@ class MainModel12_15 {
                     x_tar = obj1.x_end;
                     y_tar = obj1.y;
                     if(x_cur == x_tar && y_cur == y_tar) {
+                        obj1.await = await;
+                        obj1.remain += await;
+                        await = 0;
+                        stage = 10;
+                    }
+                    break;
+                case 10 :
+                    if(obj1.await > 0) {
+                        obj1.await --;
+                    } else {
                         stage = 0;
                     }
                     break;
@@ -295,24 +323,24 @@ class MainModel12_15 {
             if(button.clicked()) {
                 int t = button.b_text.charAt(button.b_text.length() - 1) - '0';
                 obj2.remain -= t;
-                if(obj2.remain < 5) {
-                    obj2.remain = 5;
+                if(obj2.remain < 0) {
+                    obj2.remain = 0;
                 }
             }
         }
         
         if(check.clicked()) {
-            stage = 1;
+            stage = 8;
         }
     }
-
+    
     void reset() {
         if(stage > 0) {
             return;
         }
         obj2.remain = 5;
     }
-
+    
     boolean isFinish() {
         return answer;
     }
@@ -321,7 +349,7 @@ class Question12_15 extends Question {
     MainModel12_15 model = new MainModel12_15();
     void setup() {
         super.setup();
-        String quizText = "Sheena có 26 tấm thiệp Giáng sinh. Anne có 14 tấm. Hỏi số thiệp Sheena cần đưa cho Anne là bao nhiêu để hai bạn có số thiệp bằng nhau ?";
+        String quizText = "Bill có 30 quyển truyện. Nếu bạn ấy đưa cho Jack 4 quyển thì cả hai bạn sẽ có số truyện bằng nhau. Hỏi ban đầu Jack có bao nhiêu quyển truyện?";
         quiz = new QuizText(quizText);
         model.setup();
     }
