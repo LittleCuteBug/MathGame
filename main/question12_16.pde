@@ -396,8 +396,7 @@ class Question12_16 extends Question {
     MainModel12_16 model = new MainModel12_16();
     void setup() {
         super.setup();
-        String quizText = "Bill có 30 quyển truyện. Nếu bạn ấy đưa cho Jack 4 quyển thì cả hai bạn sẽ có số truyện bằng nhau. Hỏi ban đầu Jack có bao nhiêu quyển truyện?";
-        quiz = new QuizText(quizText);
+        String quizText = "Hai thùng cá có 40 con cá. Người chủ chuyển 3 con cá từ thùng thứ nhất sang thùng thứ hai thì cả hai thùng có số cá bằng nhau. Hỏi ban đầu mỗi thùng có bao nhiêu con cá?";
         model.setup();
     }
     
