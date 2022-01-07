@@ -10,8 +10,8 @@ class Ball {
   boolean chosen;
   // chosen
   int ordinal = 0;
-  int x_p = 300;
-  int y_p = 700;
+  int x_p = 500;
+  int y_p = 600;
   int distance = 100;
 
   Ball(String _colo, int _x, int _y) {
