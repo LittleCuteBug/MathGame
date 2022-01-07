@@ -223,6 +223,11 @@ class MainModel12_16 {
         //draw objects
         obj1.draw();
         obj2.draw();
+        textSize(220);
+        text("}", 1000, 360);
+        textSize(50);
+        text(obj1.remain + obj2.remain, 1060, 310);
+        textSize(12);
         
         //draw buttons
         for(RectButton button : addButton) {
@@ -290,7 +295,7 @@ class MainModel12_16 {
                         }
                     } else {
                         if(counter > 0) {
-                            image(loadImage("../data/img/False.png"), 1050, 200, 270, 180);
+                            image(loadImage("../data/img/False.png"), 1060, 210, 240, 160);
                         } else {
                             stage = 5;
                         }
@@ -328,7 +333,7 @@ class MainModel12_16 {
                     break;
                 case 11 :
                     if(counter > 0) {
-                        image(loadImage("../data/img/False.png"), 1050, 200, 270, 180);
+                        image(loadImage("../data/img/False.png"), 1060, 210, 240, 160);
                     } else {
                         stage = 0;
                     }
@@ -397,6 +402,7 @@ class Question12_16 extends Question {
     void setup() {
         super.setup();
         String quizText = "Hai thùng cá có 40 con cá. Người chủ chuyển 3 con cá từ thùng thứ nhất sang thùng thứ hai thì cả hai thùng có số cá bằng nhau. Hỏi ban đầu mỗi thùng có bao nhiêu con cá?";
+        quiz = new QuizText(quizText);
         model.setup();
     }
     
