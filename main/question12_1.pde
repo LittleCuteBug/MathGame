@@ -52,9 +52,9 @@ class Question12_1 extends Question {
     
     
     fill(0);
-    text("Số lớn là", 300, posYAnswerBoxTitle);
+    text("Amanda có:", 300, posYAnswerBoxTitle);
     text(answer[0], 305, posYAnswerBoxText);
-    text("Số bé là", 500, posYAnswerBoxTitle);
+    text("Nancy có:", 500, posYAnswerBoxTitle);
     text(answer[1], 505, posYAnswerBoxText);
     text("Trả lời", 830, posYAnswerBoxText);
     fill(0);
@@ -74,7 +74,7 @@ class Question12_1 extends Question {
       fill(255 - curColor);
       text(big, posXBox + bigBoxLength + 20,225 + 35); /// Bignumber box
       text(big, posXBox + bigBoxLength + 20,300 + 35); /// Smallnumber box
-      text("Số lớn là: (" + str(big + small) + " + " + str(big - small) + ")" + " / 2 = " + str(big) + ". " + "Số bé là: " + str(big) + " - " + str(big - small) + " = " + str(small) + ".", 180, 420);
+      text("Amanda có: (" + str(big + small) + " + " + str(big - small) + ")" + " / 2 = " + str(big) + ". " + "Nancy có: " + str(big) + " - " + str(big - small) + " = " + str(small) + ".", 180, 420);
     }
     if (curColor == 255) {
       curSum = big * 2;
@@ -87,9 +87,9 @@ class Question12_1 extends Question {
  
     textSize(40);
     fill(0);
-    text("Số lớn", 180, 270);
+    text("Amanda", 150, 270);
     if (!sol) {
-      text("Số bé", 180, 345);
+      text("Nancy", 150, 345);
     }
     //text("Số bé", 180, 345);
     text(big - small, posXBox + smallBoxLength + 50, 262);
@@ -130,7 +130,7 @@ class Question12_1 extends Question {
   void reset() {
     answer[0] = answer[1] = "";
     sol = false;
-    curSum = 110;
+    curSum = 60;
     rate = 0;
     curColor = 0;
     super.reset();
