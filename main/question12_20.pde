@@ -212,17 +212,17 @@ class MainModel12_20 {
         // object 1
         ModelObject12_20 obj1 = new ModelObject12_20(0, 25);
         obj1.setPosition(x, y);
-        obj1.setImage(loadImage("../data/img/bus1.png"), imgSize);
+        obj1.setImage(loadImage("../data/img/orangebacket.jpg"), imgSize);
         
         // object 2
         ModelObject12_20 obj2 = new ModelObject12_20(1, 33);
         obj2.setPosition(x, y + distance);
-        obj2.setImage(loadImage("../data/img/bus2.png"), imgSize);
+        obj2.setImage(loadImage("../data/img/orangebacket1.jpg"), imgSize);
 
         // object 3
         ModelObject12_20 obj3 = new ModelObject12_20(2, 23);
         obj3.setPosition(x, y + 2 * distance);
-        obj3.setImage(loadImage("../data/img/bus3.png"), imgSize);
+        obj3.setImage(loadImage("../data/img/orangebacket2.jpg"), imgSize);
         
         //push in array
         listObj.add(obj1);
