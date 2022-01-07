@@ -59,12 +59,12 @@ class Question12_5 extends Question {
     
     
     fill(0);
-    text("Số thứ nhất là", 300, posYAnswerBoxTitle);
+    text("Số vịt là", 300, posYAnswerBoxTitle);
     text(answer[0], 305, posYAnswerBoxText);
-    text("Số thứ hai là", 500, posYAnswerBoxTitle);
+    text("Số gà là", 500, posYAnswerBoxTitle);
     text(answer[1], 505, posYAnswerBoxText);
     text("Trả lời", 840, posYAnswerBoxText);
-	text("Số thứ ba là", 400, posYAnswerBoxTitle + 100);
+	text("Số ngỗng là", 400, posYAnswerBoxTitle + 100);
 	text(answer[2], 405,  posYAnswerBoxText + 100);
     fill(0);
     text("Hướng dẫn", 1040, posYAnswerBoxText);
@@ -115,7 +115,7 @@ class Question12_5 extends Question {
       text(small, posXBox + smallBoxLength + 20,300 - 20); /// Smallnumber box
       text(small, posXBox + smallBoxLength + 20,300 + 30); /// Smallnumber box
 	  
-      text("Số thứ hai là: ("
+      text("Số gà là: ("
 			+ (big + small + third)
 			+ " - " 
 			+ (big - small)
@@ -123,14 +123,14 @@ class Question12_5 extends Question {
 			+ (third - small)
 			+ ") / 3 = "
 			+ small 
-			+ ". Số thứ nhất là: "
+			+ ". Số vịt là: "
 			+ small
 			+ " + "
 			+ (big - small) 
 			+ " = "
 			+ big 
 			+ ". "
-			+ "Số thứ ba là: "
+			+ "Số ngỗng là: "
 			+ small
 			+ " + "
 			+ (third - small) 
@@ -151,10 +151,10 @@ class Question12_5 extends Question {
  
     textSize(30);
     fill(curColor);
-    text("Số thứ nhất", 150, 230);
-	text("Số thứ ba", 150, 330);
+    text("Số vịt", 150, 230);
+	text("Số ngỗng", 150, 330);
 	fill(0);
-    text("Số thứ hai", 150, 280);
+    text("Số gà", 150, 280);
 	
 	textSize(35);
     text(curSum, 1060, 275);
@@ -200,7 +200,7 @@ class Question12_5 extends Question {
   void reset() {
     answer[0] = answer[1] = answer[2] = "";
     sol = false;
-    curSum = 110;
+    curSum = 24;
     rate = 0;
     curColor = 0;
 	super.reset();
